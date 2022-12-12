@@ -1,1 +1,27 @@
-
+body {
+    font-weight: 800;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(135, 169, 204);
+}
+h2 {
+    font-weight: 500;
+    font-size: larger;
+}
+p {
+    font-weight: 100;
+}
+label, button {
+    display: block;
+}
+.wrapper{
+    display: block;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+.notearea {
+    display: block;
+    border: 1px solid black;
+}
+.important {
+    border: 2px solid red;
+}
