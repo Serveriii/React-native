@@ -14,6 +14,10 @@ const bgImage = require("../assets/background.jpg");
 
 export default function HomeScreen() {
 
+  const buttonPress = () => {
+    console.log("Button Pressed");
+  }
+
     return (
       <ImageBackground source={bgImage} style={styles.image}>
             <View style={styles.scaffold} id="scaffold">
@@ -23,7 +27,7 @@ export default function HomeScreen() {
               <Text>Sell What You Don't Need</Text>
               </View>
 
-              <Pressable style={[styles.accountButton, {backgroundColor: '#fc5c65'}]} onPress={() => console.log("Login")}>
+              <Pressable style={[styles.accountButton, {backgroundColor: '#fc5c65'}]} onPress={buttonPress}>
                 <Text style={{fontSize: 20, fontFamily: 'sans-serif-condensed'}}>Login</Text>
               </Pressable>
               <Pressable style={[styles.accountButton, {backgroundColor: '#4ECDC4'}]} onPress={() => console.log("Register")}>
