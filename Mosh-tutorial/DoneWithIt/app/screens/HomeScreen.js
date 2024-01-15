@@ -24,10 +24,10 @@ export default function HomeScreen() {
               </View>
 
               <Pressable style={[styles.accountButton, {backgroundColor: '#fc5c65'}]} onPress={() => console.log("Login")}>
-                <Text>Login</Text>
+                <Text style={{fontSize: 20, fontFamily: 'sans-serif-condensed'}}>Login</Text>
               </Pressable>
               <Pressable style={[styles.accountButton, {backgroundColor: '#4ECDC4'}]} onPress={() => console.log("Register")}>
-                <Text>Register</Text>
+                <Text style={{fontSize: 20, fontFamily: 'sans-serif-condensed'}}>Register</Text>
               </Pressable>
 
             </View> 
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 60,
     alignItems: "center",
-    padding: 20,
+    paddingTop: 15,
   }
 
 });
