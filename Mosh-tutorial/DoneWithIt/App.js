@@ -9,30 +9,11 @@ import {
   StatusBar,
   Platform
 } from "react-native";
-import { useDeviceOrientation } from "@react-native-community/hooks";
+import HomeScreen from "./app/screens/HomeScreen";
 
 export default function App() {
 
-
-
   return (
-    <View style={{
-      backgroundColor: "#ffffff",
-      flex: 1,
-    }}>
-      <View style={{
-        backgroundColor: "dodgerblue",
-        flex: 0.5,
-      }}/>
-    </View>
+    <HomeScreen/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems:'center',
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-  },
-});
