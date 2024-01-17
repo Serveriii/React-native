@@ -11,12 +11,12 @@ export const styles = StyleSheet.create({
     backgroundColor: "#004ca3",
     borderWidth: 1,
     borderRadius: 10,
-    borderColor: "#6b0000",
+    borderColor: "#000000",
     padding: 10,
     marginTop: 10,
   },
   container: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#0a3c75",
     justifyContent: "space-evenly",
     width: "80%",
     height: 300,
@@ -39,9 +39,8 @@ export const styles = StyleSheet.create({
   textinput: {
     width: "100%",
     height: 40,
-    borderWidth: 1,
-    borderRadius: 4,
-    borderColor: "#ffffff",
+    padding: 0,
+    backgroundColor: "#01333f",
   },
   header: {
     fontSize: 20,
