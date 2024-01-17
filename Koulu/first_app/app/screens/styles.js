@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     height: 300,
     padding: 15,
     borderWidth: 1.3,
-    borderRadius: 10
+    borderRadius: 10,
   },
   scaffold: {
     flex: 1,
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: 40,
     padding: 0,
-    backgroundColor: "#01333f",
+    activeOutlineColor: "#04428a",
   },
   header: {
     fontSize: 20,

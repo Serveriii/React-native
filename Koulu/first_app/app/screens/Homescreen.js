@@ -22,6 +22,7 @@ export default function HomeScreen() {
           mode="outlined"
           label={"First name"}
           style={styles.textinput}
+          activeOutlineColor="#000000"
           value={text}
           onChange={(text) => setText(text)}
         />
