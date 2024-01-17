@@ -8,14 +8,12 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { styles } from "./styles";
+import { styles, scaffoldColor } from "./styles";
 
 export default function HomeScreen() {
   return (
-    <KeyboardAvoidingView
-      style={styles.scaffold}
-    >
-      <StatusBar barStyle={"light-content"} backgroundColor={"#00445f"} />
+    <View style={styles.scaffold}>
+      <StatusBar barStyle={"light-content"} backgroundColor={scaffoldColor} />
       <View style={styles.container}>
         <Text style={styles.header}>Personal information</Text>
         <Text style={styles.text}>First Name</Text>
@@ -29,6 +27,6 @@ export default function HomeScreen() {
           <Text style={{ fontWeight: "bold" }}>SUBMIT</Text>
         </TouchableOpacity>
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 }
