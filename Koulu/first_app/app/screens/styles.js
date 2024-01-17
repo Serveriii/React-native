@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
-// import Constants from "expo-constants";
+import Constants from "expo-constants";
 
-// const h = Constants.statusBarHeight + 5;
+const h = Constants.statusBarHeight + 5;
 
 export const styles = StyleSheet.create({
   button: {
@@ -15,23 +15,25 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   container: {
-    flex: 0.3,
-    width: 300,
-    height: 280,
-    alignItems: "left",
+    backgroundColor: "#11649b",
     justifyContent: "space-evenly",
-    backgroundColor: "#136788",
-    borderWidth: 1,
+    width: '80%',
+    height: 300,
+    padding: 15,
+    borderWidth: 1.3,
     borderRadius: 10,
-    padding: 20,
-    borderColor: "#ffffff",
-    position: "absolute",
-    top: 50,
+    marginTop: h,
   },
   scaffold: {
     flex: 1,
     alignItems: "center",
     backgroundColor: "#00445f",
+  },
+  text: {
+    marginTop: 20,
+    marginBottom: 5,
+    fontSize: 15,
+    color: "#ffffff"
   },
   textinput: {
     width: "100%",
