@@ -9,7 +9,7 @@ export const layout = StyleSheet.create({
     backgroundColor: scaffoldColor,
   },
   header: {
-    fontSize: 20,
+    fontSize: 25,
     textAlign: "center",
     color: "#ffffff",
     fontWeight: "600",
@@ -23,8 +23,9 @@ export const layout = StyleSheet.create({
     marginBottom: 20,
   },
   container: {
-    backgroundColor: "#bd7800",
+    backgroundColor: "#ad2e25",
     justifyContent: "space-between",
+    alignItems: "center",
     flex: 1,
     width: "100%",
     borderWidth: 1.3,
@@ -35,5 +36,10 @@ export const layout = StyleSheet.create({
   image: {
     width: 50,
     height: 50,
+  },
+  switch: {
+
+    color: "#00f2ff",
+    transform: [{ scaleX: 2 }, { scaleY: 2 }],
   },
 });

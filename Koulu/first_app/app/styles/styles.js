@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import Constants from "expo-constants";
 
 const h = Constants.statusBarHeight + 5;
-export const scaffoldColor = "#ffa600";
+export const scaffoldColor = "#750400";
 
 export const styles = StyleSheet.create({
   button: {
