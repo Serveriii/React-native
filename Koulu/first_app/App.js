@@ -1,10 +1,10 @@
 import { PaperProvider } from "react-native-paper";
-import HomeScreen from "./app/screens/Homescreen";
+import LayoutScreen from "./app/screens/LayoutScreen";
 
 export default function App() {
   return (
     <PaperProvider>
-      <HomeScreen />
+      <LayoutScreen />
     </PaperProvider>
   );
 }

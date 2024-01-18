@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { styles, scaffoldColor } from "../../styles/styles";
+import { styles, scaffoldColor } from "../styles/styles";
 
 export default function HomeScreen() {
   const [text, setText] = useState("");
