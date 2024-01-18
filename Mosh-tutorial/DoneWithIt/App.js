@@ -1,19 +1,6 @@
-
-import React, { useState } from "react";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  StatusBar,
-  Platform
-} from "react-native";
-import HomeScreen from "./app/screens/HomeScreen";
+import React from "react";
+import {LayoutScreen } from "./app/screens";
 
 export default function App() {
-
-  return (
-    <HomeScreen/>
-  );
+  return <LayoutScreen />;
 }

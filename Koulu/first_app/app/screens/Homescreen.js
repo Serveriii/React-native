@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { styles, scaffoldColor } from "./styles";
+import { styles, scaffoldColor } from "../../styles/styles";
 
 export default function HomeScreen() {
   const [text, setText] = useState("");
@@ -20,7 +20,7 @@ export default function HomeScreen() {
         <Text style={styles.header}>Personal information</Text>
         <TextInput
           mode="outlined"
-          label={"First name"}
+          label={" name"}
           style={styles.textinput}
           activeOutlineColor="#000000"
           value={text}
