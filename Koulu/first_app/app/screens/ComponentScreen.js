@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';    
 import { components } from '../styles/components';
-import { RadioButton, Text, Button, Modal, Portal } from "react-native-paper";
+import { RadioButton, Text, Button, Modal, } from "react-native-paper";
 import {Calendar} from "react-native-calendars";
 
 const countries = [
@@ -37,7 +37,8 @@ export default function ComponentScreen() {
           style={{
         borderWidth: 1,
         borderColor: 'gray',
-        height: 350,
+        borderRadius: 20,
+        height: 400,
       }}
 
         />
