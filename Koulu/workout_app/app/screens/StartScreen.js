@@ -10,9 +10,9 @@ export default function StartScreen({ navigation }) {
   return (
     <View style={containers.scaffold}>
       <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
-      <FontAwesome5 name="dumbbell" size={34} color={colors.primary} />
-      <Text>WorkoutApp</Text>
-      <Button onPress={() => navigation.navigate("Workouts")}>Workouts</Button>
+      <FontAwesome5 name="dumbbell" size={70} color={colors.primary} />
+      <Button onPress={() => navigation.navigate("AddWork")}>New workout</Button>
+      <Button onPress={() => navigation.navigate("Workouts")}>Your workouts</Button>
     </View>
   );
 }
