@@ -34,6 +34,7 @@ export default function AddWorkoutScreen() {
             onPress={() => console.log("pressed")}
             children={button.label}
             buttonColor={colors.secondary}
+            compact={true}
           />
         ))}
       </View>
