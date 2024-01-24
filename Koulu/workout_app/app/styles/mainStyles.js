@@ -16,9 +16,8 @@ export const containers = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    flex: 0.5,
-    padding: 20,
-    alignItems: "center",
+    flex: 0.3,
+    alignItems: "flex-start",
     justifyContent: "center",
   },
   workoutContainer: {
