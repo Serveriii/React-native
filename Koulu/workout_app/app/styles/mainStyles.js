@@ -8,6 +8,23 @@ export const colors = {
   light: "#A8C7FF",
 };
 
+export const buttons = StyleSheet.create({
+  button: {
+    width: 200,
+    height: 50,
+    justifyContent: "center",
+  },
+  sportButton: {
+    width: 100,
+    height: 50,
+    justifyContent: "center",
+  },
+  centerButton: {
+    borderRadius: 0,
+  },
+});
+
+
 export const containers = StyleSheet.create({
   scaffold: {
     flex: 1,
@@ -28,13 +45,5 @@ export const containers = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
   },
-  button: {
-    width: 100,
-    height: 50,
-    justifyContent: "center",
-  },
-  centerButton: {
-    borderRadius: 0,
-  },
-  }
+} 
 );

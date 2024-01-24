@@ -3,9 +3,9 @@ import { View, StyleSheet, StatusBar } from "react-native";
 import { Text, Button } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-import { colors, containers } from "../styles/mainStyles";
+import { colors, containers, buttons } from "../styles/mainStyles";
 
-const buttons = [
+const menuButtons = [
   {
     label: "New workout",
     navigate:"AddWork",
@@ -27,7 +27,7 @@ export default function StartScreen({ navigation }) {
   return (
     <View style={containers.scaffold}>
       <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
-      {buttons.map((button, index) => (
+      {menuButtons.map((button, index) => (
         <Button
           key={index}
           onPress={() => navigation.navigate(button.navigate)}
@@ -35,7 +35,7 @@ export default function StartScreen({ navigation }) {
           mode="contained"
           buttonColor={colors.dark}
           children={button.label}
-          style={containers.button}
+          style={buttons.button}
           labelStyle={{fontSize: 20}}
         />
       ))}
