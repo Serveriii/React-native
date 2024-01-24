@@ -21,5 +21,11 @@ export const containers = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  button: {
+    margin: 10,
+    width: 200,
+    height: 50,
+    justifyContent: "center",
+  },
   }
 );
