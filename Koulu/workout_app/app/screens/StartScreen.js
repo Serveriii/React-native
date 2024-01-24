@@ -9,6 +9,7 @@ import { colors, containers } from "../styles/mainStyles";
 export default function StartScreen({ navigation }) {
   return (
     <View style={containers.scaffold}>
+      <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <FontAwesome5 name="dumbbell" size={34} color={colors.primary} />
       <Text>WorkoutApp</Text>
       <Button onPress={() => navigation.navigate("Workouts")}>Workouts</Button>
