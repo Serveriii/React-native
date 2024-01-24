@@ -16,16 +16,26 @@ export const containers = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    flex: 1,
+    flex: 0.5,
     backgroundColor: colors.dark,
     alignItems: "center",
     justifyContent: "center",
   },
+  workoutContainer: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: colors.light,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
   button: {
-    margin: 10,
-    width: 200,
+    width: 100,
     height: 50,
     justifyContent: "center",
+  },
+  centerButton: {
+    borderRadius: 0,
   },
   }
 );
