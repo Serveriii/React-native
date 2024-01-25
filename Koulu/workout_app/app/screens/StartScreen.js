@@ -38,7 +38,7 @@ export default function StartScreen({ navigation }) {
 
       {menuButtons.map((button, index) => (
         <TouchableOpacity
-          kety={index}
+          key={index}
           style={startStyles.touchable}
           onPress={() => navigation.navigate(button.navigate)}
         >
