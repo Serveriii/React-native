@@ -35,20 +35,6 @@ export default function AddWorkoutScreen() {
   );
 }
 
-{
-  /* {sportButtons.map((button, index) => (
-          <Button
-            key={index}
-            mode="contained"
-            icon={button.icon}
-            style={[buttons.sportButton, button.style]}
-            onPress={() => console.log("pressed")}
-            children={button.label}
-            buttonColor={colors.dark}
-            compact={true}
-          />
-        ))} */
-}
 
 const sportButtons = [
   {
