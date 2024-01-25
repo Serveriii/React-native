@@ -23,10 +23,11 @@ export const addWorkStyle = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    flex: 0.3,
-    alignItems: "flex-start",
-    justifyContent: "center",
+    flex: 0.6,
+    alignItems: "center",
+    justifyContent: "stretch",
     backgroundColor: "red",
+    width: "100%",
     margin: 40,
   },
   workoutContainer: {
