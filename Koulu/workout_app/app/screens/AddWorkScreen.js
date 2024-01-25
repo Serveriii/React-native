@@ -1,31 +1,42 @@
-import React from "react";
+import { React, useState } from "react";
 import { View, StatusBar } from "react-native";
-import { Text, Button } from "react-native-paper";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { Text, Button, SegmentedButtons } from "react-native-paper";
+import { colors } from "../styles/mainStyles";
+import { addWorkStyle } from "../styles/addWorkStyle";
 
-import { colors, containers, buttons } from "../styles/mainStyles";
 
-const sportButtons = [
-  {
-    label: "Run",
-    icon: "run",
-    style: { borderBottomRightRadius: 0, borderTopRightRadius: 0 },
-  },
-  { label: "Cycle", icon: "bike", style: buttons.centerButton },
-  { label: "Swim", icon: "swim", style: buttons.centerButton },
-  {
-    label: "Ski",
-    icon: "ski",
-    style: { borderBottomLeftRadius: 0, borderTopLeftRadius: 0 },
-  },
-];
 
 export default function AddWorkoutScreen() {
+  const [value, setValue] = useState("run");
+
   return (
-    <View style={containers.scaffold}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
-      <View style={[containers.container, { flexDirection: "row" }]}>
-        {sportButtons.map((button, index) => (
+    <View style={addWorkStyle.scaffold}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.dark} />
+      <View style={addWorkStyle.workoutContainer}>
+        <SegmentedButtons
+          theme={{ colors: { secondaryContainer: colors.dark } }}
+          value={value}
+          onValueChange={setValue}
+          buttons={sportButtons}
+          style={addWorkStyle.sportButton}
+        />
+      </View>
+      <View style={addWorkStyle.container}>
+        <Text>Distance</Text>
+      </View>
+      <View style={addWorkStyle.container}>
+        <Text>Duration</Text>
+      </View>
+      <View style={addWorkStyle.container}>
+        <Text>Calendar</Text>
+      </View>
+      <Button children={"Add workout"} mode="contained" />
+    </View>
+  );
+}
+
+{
+  /* {sportButtons.map((button, index) => (
           <Button
             key={index}
             mode="contained"
@@ -33,12 +44,35 @@ export default function AddWorkoutScreen() {
             style={[buttons.sportButton, button.style]}
             onPress={() => console.log("pressed")}
             children={button.label}
-            buttonColor={colors.secondary}
+            buttonColor={colors.dark}
             compact={true}
           />
-        ))}
-      </View>
-      
-    </View>
-  );
+        ))} */
 }
+
+const sportButtons = [
+  {
+    label: "Run",
+    icon: "run",
+    value: "run",
+    checkedColor: "white",
+  },
+  {
+    label: "Cycle",
+    icon: "bike",
+    value: "bike",
+    checkedColor: "white",
+  },
+  {
+    label: "Swim",
+    icon: "swim",
+    value: "swim",
+    checkedColor: "white",
+  },
+  {
+    label: "Ski",
+    icon: "ski",
+    value: "ski",
+    checkedColor: "white",
+  },
+];

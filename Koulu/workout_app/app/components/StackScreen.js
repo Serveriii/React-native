@@ -15,15 +15,31 @@ export default function StackScreen() {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: colors.primary,
+            backgroundColor: colors.dark,
           },
           headerTintColor: colors.light,
         }}
       >
-        <Stack.Screen name="Start" component={StartScreen} options={{title: 'Workout App'}} />
-        <Stack.Screen name="Workouts" component={WorkoutScreen} />
-        <Stack.Screen name="AddWork" component={AddWorkScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen
+          name="Start"
+          component={StartScreen}
+          options={{ title: "Workout App" }}
+        />
+        <Stack.Screen
+          name="Workouts"
+          component={WorkoutScreen}
+          options={{ title: "Your workouts" }}
+        />
+        <Stack.Screen
+          name="AddWork"
+          component={AddWorkScreen}
+          options={{ title: "Add workout" }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{ title: "Settings" }}
+        />
       </Stack.Navigator>
     );
 }

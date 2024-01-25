@@ -3,8 +3,7 @@ import { colors } from "./mainStyles";
 
 export const startStyles = StyleSheet.create({
   scaffold: {
-    flex: 1,
-    backgroundColor: colors.dark,
+    flex: 1
   },
   container: {
     flex: 0.3,
@@ -27,4 +26,5 @@ export const startStyles = StyleSheet.create({
     fontSize: 40,
     color: "white",
   },
+  
 });

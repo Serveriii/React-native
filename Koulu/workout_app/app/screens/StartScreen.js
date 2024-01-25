@@ -6,10 +6,9 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import { Text, Button,  } from "react-native-paper";
+import { Text, Icon } from "react-native-paper";
 import { colors } from "../styles/mainStyles";
 import { startStyles } from "../styles/startScreenStyle";
-
 
 const menuButtons = [
   {
@@ -35,15 +34,17 @@ const menuButtons = [
 export default function StartScreen({ navigation }) {
   return (
     <View style={startStyles.scaffold}>
-      <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
+      <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
 
       {menuButtons.map((button, index) => (
         <TouchableOpacity
+          kety={index}
           style={startStyles.touchable}
           onPress={() => navigation.navigate(button.navigate)}
         >
           <ImageBackground source={button.image} style={startStyles.image}>
             <Text style={startStyles.touchtext}>{button.label}</Text>
+            <Icon source={button.icon} size={50} color="white" />
           </ImageBackground>
         </TouchableOpacity>
       ))}
