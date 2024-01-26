@@ -5,16 +5,22 @@ import { WorkoutContext } from "../components/WorkoutContext";
 import { colors, containers } from "../styles/mainStyles";
 
 export default function WorkoutScreen({ navigation }) {
-  const sports = useContext(WorkoutContext);
+  const sportList = useContext(WorkoutContext);
 
-  console.log(sports.workouts);
 
   return (
     <View style={containers.scaffold}>
       <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
       <Text>Workouts</Text>
+      <Button
+        children={"Clear workouts"}
+        mode="contained"
+        onPress={() => {
+          sportList.setWorkouts([]);
+        }}
+      />
       <FlatList
-        data={sports.workouts}
+        data={sportList.workouts}
         renderItem={({ item }) => (
           <Card>
             <Card.Title title={item.sport} />

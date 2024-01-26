@@ -7,19 +7,18 @@ import { WorkoutContext } from "../components/WorkoutContext";
 import { WorkoutLogger } from "../components/WorkoutLogger";
 
 export default function AddWorkoutScreen() {
-
- const sports = useContext(WorkoutContext);
-
+  const [sportValue, setsportValue] = useState("Running");
+  const [distance, setDistance] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   return (
-    // console.log(sports.sportValue, sports.distance, sports.duration),
     <View style={addWorkStyle.scaffold}>
       <StatusBar barStyle="light-content" backgroundColor={colors.dark} />
       <View style={addWorkStyle.workoutContainer}>
         <SegmentedButtons
           theme={{ colors: { secondaryContainer: colors.dark } }}
-          value={sports.sportValue}
-          onValueChange={sports.setsportValue}
+          value={sportValue}
+          onValueChange={setsportValue}
           buttons={sportButtons}
           style={addWorkStyle.sportButton}
         />
@@ -28,8 +27,8 @@ export default function AddWorkoutScreen() {
         <TextInput
           label="Distance (km)"
           mode="outlined"
-          value={sports.distance}
-          onChangeText={(distance) => sports.setDistance(distance)}
+          value={distance}
+          onChangeText={(distance) => setDistance(distance)}
           activeOutlineColor={colors.primary}
           maxLength={10}
           keyboardType="numeric"
@@ -37,8 +36,8 @@ export default function AddWorkoutScreen() {
         <TextInput
           label="Duration(min)"
           mode="outlined"
-          value={sports.duration}
-          onChangeText={(duration) => sports.setDuration(duration)}
+          value={duration}
+          onChangeText={(duration) => setDuration(duration)}
           activeOutlineColor={colors.primary}
           maxLength={10}
           keyboardType="numeric"
@@ -47,7 +46,11 @@ export default function AddWorkoutScreen() {
       <View style={addWorkStyle.container}>
         <Text>Calendar</Text>
       </View>
-      <WorkoutLogger />
+      <WorkoutLogger
+        sportvalue={sportValue}
+        distance={distance}
+        duration={duration}
+      />
     </View>
   );
 }
@@ -56,25 +59,25 @@ const sportButtons = [
   {
     label: "Run",
     icon: "run",
-    value: "run",
+    value: "Running",
     checkedColor: "white",
   },
   {
     label: "Cycle",
     icon: "bike",
-    value: "bike",
+    value: "Cycling",
     checkedColor: "white",
   },
   {
     label: "Swim",
     icon: "swim",
-    value: "swim",
+    value: "Swimming",
     checkedColor: "white",
   },
   {
     label: "Ski",
     icon: "ski",
-    value: "ski",
+    value: "Skiing",
     checkedColor: "white",
   },
 ];

@@ -5,33 +5,21 @@ import StackScreen from "./app/components/StackScreen";
 import { WorkoutContext } from "./app/components/WorkoutContext";
 
 export default function App() {
-  const [sportValue, setsportValue] = useState("run");
-  const [distance, setDistance] = useState(0);
-  const [duration, setDuration] = useState(0);
   const [workouts, setWorkouts] = useState([
     {
-      sport: "run",
+      sport: "Running",
       distance: 10,
       duration: 30,
       date: Date.now(),
     },
     {
-      sport: "bike",
+      sport: "Cycling",
       distance: 20,
       duration: 60,
       date: Date.now(),
     },
   ]);
-  const providerValue = {
-    sportValue,
-    distance,
-    duration,
-    workouts,
-    setDistance,
-    setDuration,
-    setsportValue,
-    setWorkouts,
-  };
+  const providerValue = {workouts, setWorkouts};
 
   return (
     <PaperProvider>

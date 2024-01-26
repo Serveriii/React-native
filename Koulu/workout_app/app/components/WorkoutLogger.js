@@ -3,13 +3,13 @@ import { View } from "react-native";
 import { Button } from "react-native-paper";
 import { WorkoutContext } from "./WorkoutContext";
 
-export function WorkoutLogger() {
-  const sports = useContext(WorkoutContext);
+export function WorkoutLogger(props) {
+  const sportList = useContext(WorkoutContext);
 
   const sportObject = {
-    sport: sports.sportValue,
-    distance: sports.distance,
-    duration: sports.duration,
+    sport: props.sportvalue,
+    distance: props.distance,
+    duration: props.duration,
     date: Date.now(),
   };
   return (
@@ -19,14 +19,14 @@ export function WorkoutLogger() {
         children={"Add workout"}
         mode="contained"
         onPress={() => {
-          sports.setWorkouts([...sports.workouts, sportObject]);
+          sportList.setWorkouts([...sportList.workouts, sportObject]);
         }}
       />
       <Button
         children={"Clear workouts"}
         mode="contained"
         onPress={() => {
-          sports.setWorkouts([]);
+          sportList.setWorkouts([]);
         }}
       />
     </View>
