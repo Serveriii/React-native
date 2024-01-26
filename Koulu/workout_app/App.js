@@ -8,7 +8,20 @@ export default function App() {
   const [sportValue, setsportValue] = useState("run");
   const [distance, setDistance] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [workouts, setWorkouts] = useState([]);
+  const [workouts, setWorkouts] = useState([
+    {
+      sport: "run",
+      distance: 10,
+      duration: 30,
+      date: Date.now(),
+    },
+    {
+      sport: "bike",
+      distance: 20,
+      duration: 60,
+      date: Date.now(),
+    },
+  ]);
   const providerValue = {
     sportValue,
     distance,

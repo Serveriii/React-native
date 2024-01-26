@@ -33,9 +33,11 @@ export const containers = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    flex: 0.3,
+    flex: 0.5,
     alignItems: "flex-start",
     justifyContent: "center",
+    width: "100%",
+    backgroundColor: colors.dark,
   },
   workoutContainer: {
     flex: 1,
