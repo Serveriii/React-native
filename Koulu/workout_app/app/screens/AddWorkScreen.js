@@ -4,13 +4,15 @@ import { Text, Button, SegmentedButtons, TextInput } from "react-native-paper";
 import { colors } from "../styles/mainStyles";
 import { addWorkStyle } from "../styles/addWorkStyle";
 import { WorkoutContext } from "../components/WorkoutContext";
+import { WorkoutLogger } from "../components/WorkoutLogger";
 
 export default function AddWorkoutScreen() {
 
-  const sports = useContext(WorkoutContext);
+ const sports = useContext(WorkoutContext);
+
 
   return (
-    console.log(sports.sportValue),
+    // console.log(sports.sportValue, sports.distance, sports.duration),
     <View style={addWorkStyle.scaffold}>
       <StatusBar barStyle="light-content" backgroundColor={colors.dark} />
       <View style={addWorkStyle.workoutContainer}>
@@ -45,7 +47,7 @@ export default function AddWorkoutScreen() {
       <View style={addWorkStyle.container}>
         <Text>Calendar</Text>
       </View>
-      <Button children={"Add workout"} mode="contained" />
+      <WorkoutLogger />
     </View>
   );
 }
