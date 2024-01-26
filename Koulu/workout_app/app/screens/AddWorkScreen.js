@@ -10,7 +10,7 @@ export default function AddWorkoutScreen() {
   const sports = useContext(WorkoutContext);
 
   return (
-    console.log(sports),
+    console.log(sports.sportValue),
     <View style={addWorkStyle.scaffold}>
       <StatusBar barStyle="light-content" backgroundColor={colors.dark} />
       <View style={addWorkStyle.workoutContainer}>

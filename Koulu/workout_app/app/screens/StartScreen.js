@@ -10,6 +10,30 @@ import { Text, Icon } from "react-native-paper";
 import { colors } from "../styles/mainStyles";
 import { startStyles } from "../styles/startScreenStyle";
 
+
+
+export default function StartScreen({ navigation }) {
+  return (
+    <View style={startStyles.scaffold}>
+      <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
+
+      {menuButtons.map((button, index) => (
+        <TouchableOpacity
+          key={index}
+          style={startStyles.touchable}
+          onPress={() => navigation.navigate(button.navigate)}
+        >
+          <ImageBackground source={button.image} style={startStyles.image}>
+            <Text style={startStyles.touchtext}>{button.label}</Text>
+            <Icon source={button.icon} size={50} color="white" />
+          </ImageBackground>
+        </TouchableOpacity>
+      ))}
+
+    </View>
+  );
+}
+
 const menuButtons = [
   {
     label: "New workout",
@@ -30,42 +54,3 @@ const menuButtons = [
     image: require("../assets/cogs.jpg"),
   },
 ];
-
-export default function StartScreen({ navigation }) {
-  return (
-    <View style={startStyles.scaffold}>
-      <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
-
-      {menuButtons.map((button, index) => (
-        <TouchableOpacity
-          key={index}
-          style={startStyles.touchable}
-          onPress={() => navigation.navigate(button.navigate)}
-        >
-          <ImageBackground source={button.image} style={startStyles.image}>
-            <Text style={startStyles.touchtext}>{button.label}</Text>
-            <Icon source={button.icon} size={50} color="white" />
-          </ImageBackground>
-        </TouchableOpacity>
-      ))}
-
-      {/* {menuButtons.map((button, index) => (
-        <TouchableRipple
-        children={<Image src={button.image}/>}
-        
-        />
-
-        <Button
-          key={index}
-          onPress={() => navigation.navigate(button.navigate)}
-          icon={button.icon}
-          mode="contained"
-          buttonColor={colors.dark}
-          children={button.label}
-          style={buttons.button}
-          labelStyle={{fontSize: 20}}
-        />
-      ))} */}
-    </View>
-  );
-}
