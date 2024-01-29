@@ -11,7 +11,6 @@ export function WorkoutLogger(props) {
     distance: props.distance,
     duration: props.duration,
     date: props.date,
-    icon: props.icon,
   };
   return (
     <View>

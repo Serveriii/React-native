@@ -26,7 +26,26 @@ export default function WorkoutScreen({ navigation }) {
             style={workoutLogStyle.cards}
             contentStyle={workoutLogStyle.content}
           >
-            <Card.Title title={item.sport} titleVariant="titleLarge" left={(props) => <Avatar.Icon {...props} icon={item.icon}/>} />
+            <Card.Title
+              title={item.sport}
+              titleVariant="titleLarge"
+              left={(props) => (
+                <Avatar.Icon
+                  {...props}
+                  icon={
+                    item.sport === "Running"
+                      ? "run"
+                      : item.sport === "Cycling"
+                      ? "bike"
+                      : item.sport === "Swimming"
+                      ? "swim"
+                      : item.sport === "Skiing"
+                      ? "ski"
+                      : "run"
+                  }
+                />
+              )}
+            />
             <Card.Content>
               <Text style={workoutLogStyle.text}>
                 Distance: {item.distance} km

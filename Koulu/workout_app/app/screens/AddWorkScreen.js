@@ -36,18 +36,18 @@ export default function AddWorkoutScreen() {
     setDate(formattedDate);
   }
 
-  function buttonHandler () {
-      if (sportValue === 'Running') {
-        setIcon('run');
-      } else if (sportValue === 'Cycling') {
-        setIcon('bike');
-      } else if (sportValue === 'Swimming') {
-        setIcon('swim');
-      } else if (sportValue === 'Skiing') {
-        setIcon('ski');
-      }
-      console.log(icon);
-    }
+  // function buttonHandler () {
+  //     if (sportValue === 'Running') {
+  //       setIcon('run');
+  //     } else if (sportValue === 'Cycling') {
+  //       setIcon('bike');
+  //     } else if (sportValue === 'Swimming') {
+  //       setIcon('swim');
+  //     } else if (sportValue === 'Skiing') {
+  //       setIcon('ski');
+  //     }
+  //     console.log(icon);
+  //   }
 
   return (
     <View style={addWorkStyle.scaffold}>
@@ -114,7 +114,7 @@ export default function AddWorkoutScreen() {
         distance={distance}
         duration={duration}
         date={date}
-        icon={icon}
+        // icon={icon}
       />
     </View>
   );
