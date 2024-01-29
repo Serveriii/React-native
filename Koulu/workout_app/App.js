@@ -10,13 +10,13 @@ export default function App() {
       sport: "Running",
       distance: 10,
       duration: 30,
-      date: Date.now(),
+      date: '1.1.2021',
     },
     {
       sport: "Cycling",
       distance: 20,
       duration: 60,
-      date: Date.now(),
+      date: '1.1.2024',
     },
   ]);
   const providerValue = {workouts, setWorkouts};

@@ -1,15 +1,37 @@
 import { React, useState, useContext } from "react";
 import { View, StatusBar } from "react-native";
-import { Text, Button, SegmentedButtons, TextInput } from "react-native-paper";
+import {
+  Text,
+  Button,
+  SegmentedButtons,
+  TextInput,
+  Portal,
+  Modal,
+} from "react-native-paper";
+import { Calendar } from "react-native-calendars";
 import { colors } from "../styles/mainStyles";
 import { addWorkStyle } from "../styles/addWorkStyle";
 import { WorkoutLogger } from "../components/WorkoutLogger";
-import { WorkCalendar } from "../components/WorkCalendar";
+
+const currentDate = new Date().toLocaleDateString();
 
 export default function AddWorkoutScreen() {
   const [sportValue, setsportValue] = useState("Running");
   const [distance, setDistance] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [date, setDate] = useState(currentDate);
+  const [modal, setModal] = useState(false);
+
+  function formatDate(date) {
+    let inputDate = new Date(date);
+    let  formattedDate = `${inputDate.getDate().toString().padStart(2, "0")}.${(
+      inputDate.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}.${inputDate.getFullYear()}`;
+
+    setDate(formattedDate);
+  }
 
   return (
     <View style={addWorkStyle.scaffold}>
@@ -42,14 +64,40 @@ export default function AddWorkoutScreen() {
           maxLength={10}
           keyboardType="numeric"
         />
+        <Button
+          mode={"elevated"}
+          children={date}
+          onPress={() => setModal(true)}
+        />
       </View>
-      <View style={addWorkStyle.container}>
-        <WorkCalendar/>
-      </View>
+
+      <Portal>
+        <Modal visible={modal} style={addWorkStyle.modal}>
+          <Calendar
+            onDayPress={(day) => {
+              formatDate(day.dateString);
+              setModal(false);
+            }}
+            markedDates={{
+              [date]: {
+                selected: true,
+                disableTouchEvent: true,
+                selectedDotColor: "orange",
+              },
+            }}
+          />
+          <Button
+            mode={"elevated"}
+            children={"Close"}
+            onPress={() => setModal(false)}
+          />
+        </Modal>
+      </Portal>
       <WorkoutLogger
         sportvalue={sportValue}
         distance={distance}
         duration={duration}
+        date={date}
       />
     </View>
   );

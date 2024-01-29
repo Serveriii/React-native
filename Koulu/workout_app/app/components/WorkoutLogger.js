@@ -10,7 +10,7 @@ export function WorkoutLogger(props) {
     sport: props.sportvalue,
     distance: props.distance,
     duration: props.duration,
-    date: Date.now(),
+    date: props.date,
   };
   return (
     <View>
