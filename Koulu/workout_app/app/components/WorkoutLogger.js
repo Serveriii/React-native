@@ -11,10 +11,11 @@ export function WorkoutLogger(props) {
     distance: props.distance,
     duration: props.duration,
     date: props.date,
+    icon: props.icon,
   };
   return (
     <View>
-        {/* ADD ALERTS FOR BUTTONS */}
+      {/* ADD ALERTS FOR BUTTONS */}
       <Button
         children={"Add workout"}
         mode="contained"

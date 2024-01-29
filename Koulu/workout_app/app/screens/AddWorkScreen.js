@@ -12,15 +12,18 @@ import { Calendar } from "react-native-calendars";
 import { colors } from "../styles/mainStyles";
 import { addWorkStyle } from "../styles/addWorkStyle";
 import { WorkoutLogger } from "../components/WorkoutLogger";
+import { sportButtons } from "../components/SegmentedList";
 
 const currentDate = new Date().toLocaleDateString();
 
 export default function AddWorkoutScreen() {
   const [sportValue, setsportValue] = useState("Running");
-  const [distance, setDistance] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [distance, setDistance] = useState('');
+  const [duration, setDuration] = useState('');
+  const [icon, setIcon] = useState('run');
   const [date, setDate] = useState(currentDate);
   const [modal, setModal] = useState(false);
+
 
   function formatDate(date) {
     let inputDate = new Date(date);
@@ -32,6 +35,19 @@ export default function AddWorkoutScreen() {
 
     setDate(formattedDate);
   }
+
+  function buttonHandler () {
+      if (sportValue === 'Running') {
+        setIcon('run');
+      } else if (sportValue === 'Cycling') {
+        setIcon('bike');
+      } else if (sportValue === 'Swimming') {
+        setIcon('swim');
+      } else if (sportValue === 'Skiing') {
+        setIcon('ski');
+      }
+      console.log(icon);
+    }
 
   return (
     <View style={addWorkStyle.scaffold}>
@@ -98,34 +114,8 @@ export default function AddWorkoutScreen() {
         distance={distance}
         duration={duration}
         date={date}
+        icon={icon}
       />
     </View>
   );
 }
-
-const sportButtons = [
-  {
-    label: "Run",
-    icon: "run",
-    value: "Running",
-    checkedColor: "white",
-  },
-  {
-    label: "Cycle",
-    icon: "bike",
-    value: "Cycling",
-    checkedColor: "white",
-  },
-  {
-    label: "Swim",
-    icon: "swim",
-    value: "Swimming",
-    checkedColor: "white",
-  },
-  {
-    label: "Ski",
-    icon: "ski",
-    value: "Skiing",
-    checkedColor: "white",
-  },
-];

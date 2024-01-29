@@ -11,12 +11,14 @@ export default function App() {
       distance: 10,
       duration: 30,
       date: '1.1.2021',
+      icon: 'run',
     },
     {
       sport: "Cycling",
       distance: 20,
       duration: 60,
       date: '1.1.2024',
+      icon: 'bike',
     },
   ]);
   const providerValue = {workouts, setWorkouts};

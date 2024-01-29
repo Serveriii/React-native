@@ -36,10 +36,6 @@ export const addWorkStyle = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
   },
-  modal: {
-
-  },
-  calendar: {
-
-  },
+  modal: {},
+  calendar: {},
 });
