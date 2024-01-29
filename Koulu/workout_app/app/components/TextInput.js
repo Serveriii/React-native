@@ -7,7 +7,7 @@ export default function TextInputComponent(props) {
       <TextInput
         label="Distance (km)"
         mode="outlined"
-        value={props.distance}
+        value={props.distance.toString()}
         onChangeText={(distance) => setDistance(distance)}
         activeOutlineColor={colors.primary}
         maxLength={10}

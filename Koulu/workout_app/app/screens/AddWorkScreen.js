@@ -3,8 +3,8 @@ import { View, StatusBar } from "react-native";
 import { Text, Button, SegmentedButtons, TextInput } from "react-native-paper";
 import { colors } from "../styles/mainStyles";
 import { addWorkStyle } from "../styles/addWorkStyle";
-import { WorkoutContext } from "../components/WorkoutContext";
 import { WorkoutLogger } from "../components/WorkoutLogger";
+import { WorkCalendar } from "../components/WorkCalendar";
 
 export default function AddWorkoutScreen() {
   const [sportValue, setsportValue] = useState("Running");
@@ -27,7 +27,7 @@ export default function AddWorkoutScreen() {
         <TextInput
           label="Distance (km)"
           mode="outlined"
-          value={distance}
+          value={distance.toString()}
           onChangeText={(distance) => setDistance(distance)}
           activeOutlineColor={colors.primary}
           maxLength={10}
@@ -36,7 +36,7 @@ export default function AddWorkoutScreen() {
         <TextInput
           label="Duration(min)"
           mode="outlined"
-          value={duration}
+          value={duration.toString()}
           onChangeText={(duration) => setDuration(duration)}
           activeOutlineColor={colors.primary}
           maxLength={10}
@@ -44,7 +44,7 @@ export default function AddWorkoutScreen() {
         />
       </View>
       <View style={addWorkStyle.container}>
-        <Text>Calendar</Text>
+        <WorkCalendar/>
       </View>
       <WorkoutLogger
         sportvalue={sportValue}
