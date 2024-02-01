@@ -19,15 +19,6 @@ export default function WorkoutScreen({ navigation }) {
         }}
       />
       <TotalDistance />
-      {/* {sportList.workouts.map((item) => (
-        <Button
-          mode="contained-tonal"
-          key={item.id}
-          icon={item.icon}
-          children={sportList.workouts.reduce((sum, sport) => sum + sport.distance, 0)}
-          onPress={() => {}}
-        />
-      ))} */}
       <FlatList
         style={workoutLogStyle.flatlist}
         data={sportList.workouts}

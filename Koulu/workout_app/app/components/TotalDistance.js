@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import {Button} from "react-native-paper";
 import { WorkoutContext } from "./WorkoutContext";
-
+import { colors } from "../styles/mainStyles";
 
 
 export default function TotalDistance() {
@@ -34,6 +34,7 @@ export default function TotalDistance() {
         {totalDistances.map((item) => (
             <Button
             style={styles.buttons}
+            textColor={colors.light}
             mode="contained-tonal"
             key={item.sport}
             icon={item.icon}
@@ -58,5 +59,6 @@ const styles = StyleSheet.create({
     buttons: {
         width: 180,
         margin: 5,
+        backgroundColor: colors.dark,
     }
 })

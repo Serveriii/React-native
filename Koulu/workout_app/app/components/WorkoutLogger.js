@@ -22,13 +22,6 @@ export function WorkoutLogger(props) {
           sportList.setWorkouts([...sportList.workouts, sportObject]);
         }}
       />
-      <Button
-        children={"Clear workouts"}
-        mode="contained"
-        onPress={() => {
-          sportList.setWorkouts([]);
-        }}
-      />
     </View>
   );
 }
