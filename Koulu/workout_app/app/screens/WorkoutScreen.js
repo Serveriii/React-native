@@ -4,10 +4,10 @@ import { Text, Button, Card, Avatar } from "react-native-paper";
 import { WorkoutContext } from "../components/WorkoutContext";
 import { colors, containers } from "../styles/mainStyles";
 import { workoutLogStyle } from "../styles/workoutLogStyle";
+import TotalDistance from "../components/TotalDistance";
 
 export default function WorkoutScreen({ navigation }) {
   const sportList = useContext(WorkoutContext);
-
   return (
     <View style={containers.scaffold}>
       <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
@@ -18,6 +18,16 @@ export default function WorkoutScreen({ navigation }) {
           sportList.setWorkouts([]);
         }}
       />
+      <TotalDistance />
+      {/* {sportList.workouts.map((item) => (
+        <Button
+          mode="contained-tonal"
+          key={item.id}
+          icon={item.icon}
+          children={sportList.workouts.reduce((sum, sport) => sum + sport.distance, 0)}
+          onPress={() => {}}
+        />
+      ))} */}
       <FlatList
         style={workoutLogStyle.flatlist}
         data={sportList.workouts}
@@ -65,3 +75,4 @@ export default function WorkoutScreen({ navigation }) {
     </View>
   );
 }
+
