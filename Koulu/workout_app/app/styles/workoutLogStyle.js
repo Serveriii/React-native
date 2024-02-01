@@ -4,9 +4,10 @@ import { colors } from "./mainStyles";
 export const workoutLogStyle = StyleSheet.create({
     content: {
       backgroundColor: colors.dark,
-      padding: 10,  
+      padding: 0,  
       borderRadius: 10,
       marginRight: 5,
+
     },
     cards: {
         width: "100%",
@@ -15,7 +16,7 @@ export const workoutLogStyle = StyleSheet.create({
     },
     text: {
         color: colors.light,
-        fontSize: 16,
+        fontSize: 14,
     },
     flatlist: {
         width: "90%",

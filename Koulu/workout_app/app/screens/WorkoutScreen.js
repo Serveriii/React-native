@@ -32,8 +32,8 @@ export default function WorkoutScreen({ navigation }) {
           >
             <Card.Title
               titleStyle={{ color: colors.light }}
-              title={item.sport}
-              titleVariant="titleLarge"
+              title={[item.date, ',', ' ',  item.sport]}
+              titleVariant="titleMedium"
               left={(props) => (
                 <Avatar.Icon
                   style={workoutLogStyle.icons}
@@ -60,7 +60,7 @@ export default function WorkoutScreen({ navigation }) {
               <Text style={workoutLogStyle.text}>
                 Duration: {item.duration} min
               </Text>
-              <Text style={workoutLogStyle.text}>Date: {item.date}</Text>
+              {/* <Text style={workoutLogStyle.text}>Date: {item.date}</Text> */}
             </Card.Content>
           </Card>
         )}
@@ -70,9 +70,9 @@ export default function WorkoutScreen({ navigation }) {
         mode='text'
         textColor={colors.dark}
         style={workoutLogStyle.home}
-      >
-        Home
-      </Button>
+        children={"Home"}
+        labelStyle={{ fontSize: 16 }}
+      />
     </View>
   );
 }
