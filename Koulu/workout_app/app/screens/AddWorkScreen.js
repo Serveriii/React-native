@@ -66,8 +66,18 @@ export default function AddWorkoutScreen() {
         />
         <Button
           mode={"elevated"}
+          icon='calendar'
+          textColor={colors.dark}
+          style={addWorkStyle.dateButton}
           children={date}
           onPress={() => setModal(true)}
+        />
+        <WorkoutLogger
+          sportvalue={sportValue}
+          distance={distance}
+          duration={duration}
+          date={date}
+          // icon={icon}
         />
       </View>
 
@@ -93,13 +103,6 @@ export default function AddWorkoutScreen() {
           />
         </Modal>
       </Portal>
-      <WorkoutLogger
-        sportvalue={sportValue}
-        distance={distance}
-        duration={duration}
-        date={date}
-        // icon={icon}
-      />
     </View>
   );
 }

@@ -14,6 +14,9 @@ export default function WorkoutScreen({ navigation }) {
       <Button
         children={"Clear workouts"}
         mode="contained"
+        textColor={colors.light}
+        buttonColor={colors.primary}
+        style={{ margin: 10, width: 180}}
         onPress={() => {
           sportList.setWorkouts([]);
         }}

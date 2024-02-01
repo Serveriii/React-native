@@ -36,6 +36,10 @@ export const addWorkStyle = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
   },
-  modal: {},
-  calendar: {},
+  dateButton: {
+    alignItems: "flex-start",
+    marginTop: 5,
+    marginBottom: 40,
+    borderRadius: 3,
+  }
 });
