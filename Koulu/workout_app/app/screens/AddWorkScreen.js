@@ -13,41 +13,25 @@ import { colors } from "../styles/mainStyles";
 import { addWorkStyle } from "../styles/addWorkStyle";
 import { WorkoutLogger } from "../components/WorkoutLogger";
 import { sportButtons } from "../components/SegmentedList";
-
-const currentDate = new Date().toLocaleDateString();
+import { newDate } from "../components/CurrentDate";
 
 export default function AddWorkoutScreen() {
   const [sportValue, setsportValue] = useState("Running");
-  const [distance, setDistance] = useState('');
-  const [duration, setDuration] = useState('');
-  const [icon, setIcon] = useState('run');
-  const [date, setDate] = useState(currentDate);
+  const [distance, setDistance] = useState("");
+  const [duration, setDuration] = useState("");
+  const [date, setDate] = useState(newDate);
   const [modal, setModal] = useState(false);
-
 
   function formatDate(date) {
     let inputDate = new Date(date);
-    let  formattedDate = `${inputDate.getDate().toString().padStart(2, "0")}.${(
+    let formattedDate = `${inputDate.getDate().toString().padStart(2)}.${(
       inputDate.getMonth() + 1
     )
       .toString()
-      .padStart(2, "0")}.${inputDate.getFullYear()}`;
+      .padStart(1)}.${inputDate.getFullYear()}`;
 
     setDate(formattedDate);
   }
-
-  // function buttonHandler () {
-  //     if (sportValue === 'Running') {
-  //       setIcon('run');
-  //     } else if (sportValue === 'Cycling') {
-  //       setIcon('bike');
-  //     } else if (sportValue === 'Swimming') {
-  //       setIcon('swim');
-  //     } else if (sportValue === 'Skiing') {
-  //       setIcon('ski');
-  //     }
-  //     console.log(icon);
-  //   }
 
   return (
     <View style={addWorkStyle.scaffold}>

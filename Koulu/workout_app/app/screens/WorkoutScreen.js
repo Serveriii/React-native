@@ -11,7 +11,6 @@ export default function WorkoutScreen({ navigation }) {
   return (
     <View style={containers.scaffold}>
       <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
-      <Text>Workouts</Text>
       <Button
         children={"Clear workouts"}
         mode="contained"
@@ -20,6 +19,7 @@ export default function WorkoutScreen({ navigation }) {
         }}
       />
       <FlatList
+        style={workoutLogStyle.flatlist}
         data={sportList.workouts}
         renderItem={({ item }) => (
           <Card
@@ -27,10 +27,13 @@ export default function WorkoutScreen({ navigation }) {
             contentStyle={workoutLogStyle.content}
           >
             <Card.Title
+              titleStyle={{color: colors.light}}
               title={item.sport}
               titleVariant="titleLarge"
               left={(props) => (
                 <Avatar.Icon
+                style={workoutLogStyle.icons}
+                color={colors.dark}
                   {...props}
                   icon={
                     item.sport === "Running"
