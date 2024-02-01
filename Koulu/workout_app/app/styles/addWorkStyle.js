@@ -29,7 +29,7 @@ export const addWorkStyle = StyleSheet.create({
     padding: 10,
   },
   workoutContainer: {
-    flex: 0.4,
+    flex: 0.2,
     flexDirection: "row",
     backgroundColor: colors.light,
     alignItems: "center",

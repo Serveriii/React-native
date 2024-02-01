@@ -34,7 +34,7 @@ export default function TotalDistance() {
         {totalDistances.map((item) => (
             <Button
             style={styles.buttons}
-            textColor={colors.light}
+            textColor={colors.dark}
             mode="contained-tonal"
             key={item.sport}
             icon={item.icon}
@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
     buttons: {
         width: 180,
         margin: 5,
-        backgroundColor: colors.dark,
+        backgroundColor: '#f0dbdb',
     }
 })
