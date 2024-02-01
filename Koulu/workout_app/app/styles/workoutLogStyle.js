@@ -24,5 +24,9 @@ export const workoutLogStyle = StyleSheet.create({
         backgroundColor: colors.light,
         padding: 0,
         marginRight: 10,
-    }
+    },
+    home: {
+        width: "100%",
+        marginBottom: 5,
+    },
 });

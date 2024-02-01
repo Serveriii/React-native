@@ -28,13 +28,13 @@ export default function WorkoutScreen({ navigation }) {
             contentStyle={workoutLogStyle.content}
           >
             <Card.Title
-              titleStyle={{color: colors.light}}
+              titleStyle={{ color: colors.light }}
               title={item.sport}
               titleVariant="titleLarge"
               left={(props) => (
                 <Avatar.Icon
-                style={workoutLogStyle.icons}
-                color={colors.dark}
+                  style={workoutLogStyle.icons}
+                  color={colors.dark}
                   {...props}
                   icon={
                     item.sport === "Running"
@@ -62,8 +62,14 @@ export default function WorkoutScreen({ navigation }) {
           </Card>
         )}
       />
-      <Button onPress={() => navigation.navigate("Start")}>Home</Button>
+      <Button
+        onPress={() => navigation.navigate("Start")}
+        mode='text'
+        textColor={colors.dark}
+        style={workoutLogStyle.home}
+      >
+        Home
+      </Button>
     </View>
   );
 }
-
