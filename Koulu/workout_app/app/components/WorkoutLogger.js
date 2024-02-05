@@ -13,7 +13,7 @@ export function WorkoutLogger(props) {
     duration: props.duration,
     date: props.date,
   };
-  
+
   function buttonHandler() {
     if (sportObject.distance < 0 || sportObject.duration < 0) {
       alert("Distance and duration cannot be zero or negative.");
@@ -22,8 +22,8 @@ export function WorkoutLogger(props) {
     } else if (sportObject.distance == 0 || sportObject.duration == 0) {
       alert("Distance and duration cannot be zero.");
     } else if (
-      sportObject.distance.type !== "number" ||
-      sportObject.duration.type !== "number"
+      isNaN(sportObject.distance) ||
+      isNaN(sportObject.duration)
     ) {
       alert("Distance and duration must be numbers.");
     } else {

@@ -18,8 +18,8 @@ import { WorkoutContext } from "../components/WorkoutContext";
 
 export default function AddWorkoutScreen({ navigation }) {
   const [sportValue, setsportValue] = useState("Running");
-  const [distance, setDistance] = useState("");
-  const [duration, setDuration] = useState("");
+  const [distance, setDistance] = useState(Number);
+  const [duration, setDuration] = useState(Number);
   const [date, setDate] = useState(newDate);
   const [modal, setModal] = useState(false);
   const context = useContext(WorkoutContext);

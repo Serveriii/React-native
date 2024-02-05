@@ -24,14 +24,14 @@ export default function TotalDistance() {
     .filter((workout) => workout.sport === "Skiing")
     .reduce((sum, workout) => sum + Number(workout.distance), 0);
   if (units === "mi") {
-  totalRunDistance = totalRunDistance * 0.62;
-  totalCycleDistance = totalCycleDistance * 0.62;
-  totalSwimDistance = totalSwimDistance * 0.62;
-  totalSkiDistance = totalSkiDistance * 0.62;
+    totalRunDistance = Math.round(totalRunDistance * 0.62);
+    totalCycleDistance = Math.round(totalCycleDistance * 0.62);
+    totalSwimDistance = Math.round(totalSwimDistance * 0.62);
+    totalSkiDistance = Math.round(totalSkiDistance * 0.62);
   }
 
   const totalDistances = [
-    { distance: totalRunDistance + units , icon: "run", label: "Running" },
+    { distance: totalRunDistance + units, icon: "run", label: "Running" },
     {
       distance: totalCycleDistance + units,
       icon: "bike",
