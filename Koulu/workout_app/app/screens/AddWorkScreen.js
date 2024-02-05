@@ -14,13 +14,16 @@ import { addWorkStyle } from "../styles/addWorkStyle";
 import { WorkoutLogger } from "../components/WorkoutLogger";
 import { sportButtons } from "../components/SegmentedList";
 import { newDate } from "../components/CurrentDate";
+import { WorkoutContext } from "../components/WorkoutContext";
 
-export default function AddWorkoutScreen() {
+export default function AddWorkoutScreen({ navigation }) {
   const [sportValue, setsportValue] = useState("Running");
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
   const [date, setDate] = useState(newDate);
   const [modal, setModal] = useState(false);
+  const context = useContext(WorkoutContext);
+
 
   function formatDate(date) {
     let inputDate = new Date(date);
@@ -47,7 +50,7 @@ export default function AddWorkoutScreen() {
       </View>
       <View style={addWorkStyle.container}>
         <TextInput
-          label="Distance (km)"
+          label={"Distance" + "(" + context.units + ")"} 
           mode="outlined"
           value={distance.toString()}
           onChangeText={(distance) => setDistance(distance)}
@@ -66,7 +69,7 @@ export default function AddWorkoutScreen() {
         />
         <Button
           mode={"elevated"}
-          icon='calendar'
+          icon="calendar"
           textColor={colors.dark}
           style={addWorkStyle.dateButton}
           children={date}
@@ -103,6 +106,16 @@ export default function AddWorkoutScreen() {
           />
         </Modal>
       </Portal>
+      <Button
+        children={"Back"}
+        mode="contained"
+        textColor={colors.light}
+        buttonColor={colors.primary}
+        style={{ margin: 10, width: 180 }}
+        onPress={() => {
+          navigation.navigate("Start");
+        }}
+      />
     </View>
   );
 }

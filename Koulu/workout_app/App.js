@@ -5,6 +5,7 @@ import StackScreen from "./app/components/StackScreen";
 import { WorkoutContext } from "./app/components/WorkoutContext";
 
 export default function App() {
+  const [units, setUnits] = useState("km");
   const [workouts, setWorkouts] = useState([
     {
       sport: "Running",
@@ -21,7 +22,7 @@ export default function App() {
       icon: 'bike',
     },
   ]);
-  const providerValue = {workouts, setWorkouts};
+  const providerValue = {workouts, setWorkouts, units, setUnits};
 
   return (
     <PaperProvider>

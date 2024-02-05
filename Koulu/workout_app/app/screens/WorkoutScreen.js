@@ -16,7 +16,7 @@ export default function WorkoutScreen({ navigation }) {
         mode="contained"
         textColor={colors.light}
         buttonColor={colors.primary}
-        style={{ margin: 10, width: 180}}
+        style={{ margin: 10, width: 180 }}
         onPress={() => {
           sportList.setWorkouts([]);
         }}
@@ -32,7 +32,7 @@ export default function WorkoutScreen({ navigation }) {
           >
             <Card.Title
               titleStyle={{ color: colors.light }}
-              title={[item.date, ',', ' ',  item.sport]}
+              title={[item.date, ",", " ", item.sport]}
               titleVariant="titleMedium"
               left={(props) => (
                 <Avatar.Icon
@@ -55,7 +55,7 @@ export default function WorkoutScreen({ navigation }) {
             />
             <Card.Content>
               <Text style={workoutLogStyle.text}>
-                Distance: {item.distance} km
+                Distance: {item.distance} {sportList.units}
               </Text>
               <Text style={workoutLogStyle.text}>
                 Duration: {item.duration} min
@@ -66,12 +66,14 @@ export default function WorkoutScreen({ navigation }) {
         )}
       />
       <Button
-        onPress={() => navigation.navigate("Start")}
-        mode='text'
-        textColor={colors.dark}
-        style={workoutLogStyle.home}
-        children={"Home"}
-        labelStyle={{ fontSize: 16 }}
+        children={"Back"}
+        mode="contained"
+        textColor={colors.light}
+        buttonColor={colors.primary}
+        style={{ margin: 10, width: 180 }}
+        onPress={() => {
+          navigation.navigate("Start");
+        }}
       />
     </View>
   );

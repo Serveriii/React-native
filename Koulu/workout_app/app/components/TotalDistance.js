@@ -1,64 +1,93 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import {Button} from "react-native-paper";
+import { Button, Portal, Modal, Text } from "react-native-paper";
 import { WorkoutContext } from "./WorkoutContext";
 import { colors } from "../styles/mainStyles";
-
+import { totalDistanceStyle } from "../styles/totalDistanceStyle";
 
 export default function TotalDistance() {
-    const sportList = useContext(WorkoutContext);
-    const workouts = sportList.workouts;
+  const sportList = useContext(WorkoutContext);
+  const units = sportList.units;
+  const workouts = sportList.workouts;
+  const [modal, setModal] = useState(false);
 
-    const totalRunDistance = workouts
-      .filter((workout) => workout.sport === "Running")
-      .reduce((sum, workout) => sum + Number(workout.distance), 0);
-    const totalCycleDistance = workouts
-      .filter((workout) => workout.sport === "Cycling")
-      .reduce((sum, workout) => sum + Number(workout.distance), 0);
-    const totalSwimDistance = workouts
-      .filter((workout) => workout.sport === "Swimming")
-      .reduce((sum, workout) => sum + Number(workout.distance), 0);
-    const totalSkiDistance = workouts
-      .filter((workout) => workout.sport === "Skiing")
-      .reduce((sum, workout) => sum + Number(workout.distance), 0);
+  let totalRunDistance = workouts
+    .filter((workout) => workout.sport === "Running")
+    .reduce((sum, workout) => sum + Number(workout.distance), 0);
+  let totalCycleDistance = workouts
+    .filter((workout) => workout.sport === "Cycling")
+    .reduce((sum, workout) => sum + Number(workout.distance), 0);
+  let totalSwimDistance = workouts
+    .filter((workout) => workout.sport === "Swimming")
+    .reduce((sum, workout) => sum + Number(workout.distance), 0);
+  let totalSkiDistance = workouts
+    .filter((workout) => workout.sport === "Skiing")
+    .reduce((sum, workout) => sum + Number(workout.distance), 0);
+  if (units === "mi") {
+  totalRunDistance = totalRunDistance * 0.62;
+  totalCycleDistance = totalCycleDistance * 0.62;
+  totalSwimDistance = totalSwimDistance * 0.62;
+  totalSkiDistance = totalSkiDistance * 0.62;
+  }
 
-    const totalDistances = [
-        {distance: totalRunDistance + 'km', icon: "run"},
-        {distance: totalCycleDistance + 'km', icon: "bike"},
-        {distance: totalSwimDistance + 'km', icon: "swim"},
-        { distance: totalSkiDistance + 'km', icon: "ski"},
-    ]
+  const totalDistances = [
+    { distance: totalRunDistance + units , icon: "run", label: "Running" },
+    {
+      distance: totalCycleDistance + units,
+      icon: "bike",
+      label: "Cycling",
+    },
+    {
+      distance: totalSwimDistance + units,
+      icon: "swim",
+      label: "Swimming",
+    },
+    { distance: totalSkiDistance + units, icon: "ski", label: "Skiing" },
+  ];
 
   return (
     <View style={styles.container}>
-        {totalDistances.map((item) => (
-            <Button
-            style={styles.buttons}
-            textColor={colors.dark}
-            mode="contained-tonal"
-            key={item.sport}
-            icon={item.icon}
-            children={item.distance}
-            onPress={() => {}}
-          />
-        ))
-            }
+      {totalDistances.map((item) => (
+        <Button
+          style={styles.buttons}
+          textColor={colors.dark}
+          mode="contained-tonal"
+          icon={item.icon}
+          children={item.distance}
+          onPress={() => {
+            setModal(true);
+          }}
+        />
+      ))}
+      <Portal>
+        <Modal visible={modal}>
+          <View style={totalDistanceStyle.container}>
+            <Text style={totalDistanceStyle.header}>Total sport distances</Text>
+            {totalDistances.map((item) => (
+              <Text style={totalDistanceStyle.text}>
+                {item.label}: {item.distance}
+              </Text>
+            ))}
+            <Button onPress={() => setModal(false)}>Close</Button>
+          </View>
+        </Modal>
+      </Portal>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        height: 100,
-        flexDirection: "column",
-        flexWrap: "wrap",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        margin: 10,
-    },
-    buttons: {
-        width: 180,
-        margin: 5,
-        backgroundColor: '#f0dbdb',
-    }
-})
+  container: {
+    height: 100,
+    flexDirection: "column",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    margin: 10,
+  },
+  buttons: {
+    width: 180,
+    margin: 5,
+    backgroundColor: "#f0dbdb",
+  },
+});

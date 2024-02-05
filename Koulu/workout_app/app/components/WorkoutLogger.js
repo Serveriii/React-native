@@ -13,29 +13,30 @@ export function WorkoutLogger(props) {
     duration: props.duration,
     date: props.date,
   };
-  function buttonHandler () {
-    if (sportObject.distance <= 0 || sportObject.duration <= 0) {
+  function buttonHandler() {
+    if (sportObject.distance < 0 || sportObject.duration < 0) {
       alert("Distance and duration cannot be zero or negative.");
     } else if (sportObject.distance === "" || sportObject.duration === "") {
       alert("Distance and duration cannot be empty.");
+    } else if (sportObject.distance == 0 || sportObject.duration == 0){
+      alert("Distance and duration cannot be zero.");
     } else {
       alert("Workout added");
       sportList.setWorkouts([...sportList.workouts, sportObject]);
     }
   }
   return (
-    <View>
-      {/* ADD ALERTS FOR BUTTONS */}
-      <Button
-        children={"Add workout"}
-        mode="contained"
-        textColor={colors.light}
-        buttonColor={colors.primary}
-        style={{ margin: 10, borderRadius: 20}}
-        onPress={() => {
-          buttonHandler();
-        }}
-      />
-    </View>
+      <View>
+        <Button
+          children={"Add workout"}
+          mode="contained"
+          textColor={colors.light}
+          buttonColor={colors.primary}
+          style={{ margin: 10, borderRadius: 20 }}
+          onPress={() => {
+            buttonHandler();
+          }}
+        />
+      </View>
   );
 }
