@@ -33,7 +33,12 @@ export default function SettingsScreen({ navigation }) {
   return (
     <View style={settingStyle.scaffold}>
       <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
-      <RadioButton.Group value={context.units} onValueChange={(newValue) => {context.setUnits(newValue)}}>
+      <RadioButton.Group
+        value={context.units}
+        onValueChange={(newValue) => {
+          context.setUnits(newValue);
+        }}
+      >
         <View style={settingStyle.container}>
           <Text style={settingStyle.text}>Units</Text>
           <RadioButton.Item label="Kilometers" value="km" />
