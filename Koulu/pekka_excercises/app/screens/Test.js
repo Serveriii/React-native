@@ -7,7 +7,7 @@ import {
   Button,
 } from "react-native";
 
-export default function App() {
+export default function Test() {
   const [isPending, setPending] = useState(true);
   const [count, setCount] = useState(0);
   const [timerId, setTimerId] = useState();
@@ -21,23 +21,18 @@ export default function App() {
   /* ----------------------------------------------------- */
 
   /* EXAMPLE 2. setTimeout + ActivityIndicator ----------- */
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setPending(false);
-  //   }, 10000);
-  // }, []);
+//   useEffect(() => {
+//     setTimeout(() => {
+//       setPending(false);
+//     }, 10000);
+//   }, []);
 
-  // return (
-  //   <View style={styles.container}>
-  //     <ActivityIndicator
-  //       size="large"
-  //       animating={isPending}
-  //     />
-  //     {!isPending &&
-  //       <Text style={{fontSize: 40}}>Time is up!</Text>
-  //     }
-  //   </View>
-  // );
+//   return (
+//     <View style={styles.container}>
+//       <ActivityIndicator size="large" animating={isPending} />
+//       {!isPending && <Text style={{ fontSize: 40 }}>Time is up!</Text>}
+//     </View>
+//   );
   /* ----------------------------------------------------- */
 
   /* EXAMPLE 3. setInterval ------------------------------ */
@@ -70,22 +65,19 @@ export default function App() {
   /* ----------------------------------------------------- */
 
   /* EXAMPLE 5. setInterval, clearInterval manually ------ */
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      setCount(prev => prev + 1);
-    }, 1000);
-    setTimerId(timerId);
-  }, []);
+  // useEffect(() => {
+  //   const timerId = setInterval(() => {
+  //     setCount((prev) => prev + 1);
+  //   }, 1000);
+  //   setTimerId(timerId);
+  // }, []);
 
-  return (
-    <View style={styles.container}>
-      <Text style={{fontSize: 40}}>{count}</Text>
-      <Button
-        title="Stop"
-        onPress={() => clearInterval(timerId)}
-      />
-    </View>
-  );
+  // return (
+  //   <View style={styles.container}>
+  //     <Text style={{ fontSize: 40 }}>{count}</Text>
+  //     <Button title="Stop" onPress={() => clearInterval(timerId)} />
+  //   </View>
+  // );
   /* ----------------------------------------------------- */
 }
 
