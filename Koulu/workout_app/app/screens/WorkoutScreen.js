@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { View, StatusBar, FlatList } from "react-native";
 import { Text, Button, Card, Avatar } from "react-native-paper";
-import { WorkoutContext } from "../components/WorkoutContext";
+import { WorkoutContext} from "../components/WorkoutContext";
+import WorkoutCards from "../components/WorkoutCards";
 import { colors, containers } from "../styles/mainStyles";
 import { workoutLogStyle } from "../styles/workoutLogStyle";
 import TotalDistance from "../components/TotalDistance";
@@ -60,16 +61,7 @@ export default function WorkoutScreen({ navigation }) {
                 />
               )}
             />
-
-            <Card.Content>
-              <Text style={workoutLogStyle.text}>
-                Distance: {item.distance} {sportList.units}
-              </Text>
-              <Text style={workoutLogStyle.text}>
-                Duration: {item.duration} min
-              </Text>
-              {/* <Text style={workoutLogStyle.text}>Date: {item.date}</Text> */}
-            </Card.Content>
+            <WorkoutCards item={item}/>
           </Card>
         )}
       />
