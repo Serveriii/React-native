@@ -12,13 +12,21 @@ export const totalDistanceStyle = StyleSheet.create({
     fontSize: 30,
     margin: 10,
   },
-  container: {
+  modal: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.light,
   },
+  container: {
+    height: 100,
+    flexDirection: "column",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    margin: 10,
+  },
   buttons: {
-    width: '100%',
+    width: 100,
     margin: 5,
     backgroundColor: "#f0dbdb",
   },

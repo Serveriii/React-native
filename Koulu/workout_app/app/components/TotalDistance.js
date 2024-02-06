@@ -62,7 +62,7 @@ export default function TotalDistance() {
       ))}
       <Portal>
         <Modal visible={modal}>
-          <View style={totalDistanceStyle.container}>
+          <View style={totalDistanceStyle.modal}>
             <Text style={totalDistanceStyle.header}>Total sport distances</Text>
             {totalDistances.map((item) => (
               <Text style={totalDistanceStyle.text}>
