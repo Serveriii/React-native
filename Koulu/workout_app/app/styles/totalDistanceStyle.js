@@ -18,7 +18,7 @@ export const totalDistanceStyle = StyleSheet.create({
     backgroundColor: colors.light,
   },
   container: {
-    height: 100,
+    height: '15%',
     flexDirection: "column",
     flexWrap: "wrap",
     justifyContent: "flex-start",
