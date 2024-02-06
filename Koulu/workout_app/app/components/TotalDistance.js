@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Button, Portal, Modal, Text } from "react-native-paper";
 import { WorkoutContext } from "./WorkoutContext";
 import { colors } from "../styles/mainStyles";
-import { totalDistanceStyle } from "../styles/totalDistanceStyle";
+import { totalDistanceStyle} from "../styles/totalDistanceStyle";
 
 export default function TotalDistance() {
   const sportList = useContext(WorkoutContext);
@@ -46,12 +46,13 @@ export default function TotalDistance() {
   ];
 
   return (
-    <View style={styles.container}>
-      {totalDistances.map((item) => (
+    <View style={totalDistanceStyle.container}>
+      {totalDistances.map((item, id) => (
         <Button
-          style={styles.buttons}
+          style={totalDistanceStyle.buttons}
           textColor={colors.dark}
           mode="contained-tonal"
+          key={id}
           icon={item.icon}
           children={item.distance}
           onPress={() => {
@@ -76,18 +77,4 @@ export default function TotalDistance() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    height: 100,
-    flexDirection: "column",
-    flexWrap: "wrap",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    margin: 10,
-  },
-  buttons: {
-    width: 180,
-    margin: 5,
-    backgroundColor: "#f0dbdb",
-  },
-});
+
