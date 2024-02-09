@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View} from "react-native";
 import { Button, Portal, Modal, Text } from "react-native-paper";
 import { WorkoutContext } from "./WorkoutContext";
 import { colors } from "../styles/mainStyles";

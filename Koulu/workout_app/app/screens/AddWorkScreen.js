@@ -1,7 +1,6 @@
 import { React, useState, useContext } from "react";
 import { View, StatusBar } from "react-native";
 import {
-  Text,
   Button,
   SegmentedButtons,
   TextInput,
@@ -12,7 +11,7 @@ import { Calendar } from "react-native-calendars";
 import { colors } from "../styles/mainStyles";
 import { addWorkStyle } from "../styles/addWorkStyle";
 import { WorkoutLogger } from "../components/WorkoutLogger";
-import { sportButtons } from "../components/SegmentedList";
+import { sportButtons } from "../components/SportButtons";
 import { newDate } from "../components/CurrentDate";
 import { WorkoutContext } from "../components/WorkoutContext";
 
@@ -80,7 +79,6 @@ export default function AddWorkoutScreen({ navigation }) {
           distance={distance}
           duration={duration}
           date={date}
-          // icon={icon}
         />
       </View>
 
