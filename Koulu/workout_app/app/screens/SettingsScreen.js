@@ -8,28 +8,6 @@ import { settingStyle } from "../styles/settingStyle";
 export default function SettingsScreen({ navigation }) {
   const context = useContext(WorkoutContext);
 
-  // function miHandler(newValue) {
-  //   context.setUnits(newValue);
-  //   let updatedWorkouts = context.workouts.map((workout) => {
-  //     return {
-  //       ...workout,
-  //       distance: Math.round(workout.distance * 0.62),
-  //     };
-  //   });
-  //   context.setWorkouts(updatedWorkouts);
-  // }
-
-  // function kmHandler(newValue) {
-  //   context.setUnits();
-  //   let updatedWorkouts = context.workouts.map((workout) => {
-  //     return {
-  //       ...workout,
-  //       distance: Math.round(workout.distance * 1.61),
-  //     };
-  //   });
-  //   context.setWorkouts(updatedWorkouts);
-  // }
-
   return (
     <View style={settingStyle.scaffold}>
       <StatusBar backgroundColor={colors.dark} barStyle="light-content" />

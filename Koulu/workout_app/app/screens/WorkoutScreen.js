@@ -10,12 +10,6 @@ import TotalDistance from "../components/TotalDistance";
 export default function WorkoutScreen({ navigation }) {
   const sportList = useContext(WorkoutContext);
 
-  // if (sportList.units === "mi") {
-  //   sportList.workouts.map((workout) => {
-  //     return (workout.distance = Math.round(workout.distance * 0.62));
-  //   });
-  // } 
-
   return (
     <View style={containers.scaffold}>
       <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
