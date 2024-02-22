@@ -1,13 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const generalStyles = StyleSheet.create({
-  container: {
-    flex: 0.5,
-    width: "100%",
-    backgroundColor: "#8961aa",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+
   footer: {
     backgroundColor: "#4f1699",
     flexDirection: "row",
