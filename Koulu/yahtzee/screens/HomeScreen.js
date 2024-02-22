@@ -55,6 +55,7 @@ export default function HomeScreen({ navigation}) {
           <Text>Please enter player name:</Text>
           <TextInput
             style={homeStyles.input}
+            maxLength={20}
             mode="outlined"
             onChangeText={(text) => setName(text)}
             value={name}

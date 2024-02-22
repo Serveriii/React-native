@@ -8,8 +8,7 @@ export const homeStyles = StyleSheet.create({
     justifyContent: "center",
   },
   input: {
-    width: 200,
     margin: 10,
-    alignItems: "center",
+    width: "80%",
   },
 });

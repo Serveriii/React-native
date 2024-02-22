@@ -16,6 +16,10 @@ export const generalStyles = StyleSheet.create({
     width: "100%",
     padding: 10,
   },
+  navi: {
+    color: "#4f1699",
+    backgroundColor: "#4f1699",
+  },
   scaffold: {
     flex: 1,
     justifyContent: "space-between",
