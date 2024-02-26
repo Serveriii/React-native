@@ -32,7 +32,17 @@ export default function GameScreen() {
   };
 
   const dicePress = (index) => {
-    console.log("Dice pressed: " + index);
+    const updatedGameDice = [...gameDice];
+    const updatedDice = React.cloneElement(updatedGameDice[index], {
+      children: React.cloneElement(updatedGameDice[index].props.children, {
+        name: "dice-" + index, // Replace with your desired new name
+      }),
+    });
+
+    // Update the cloned array with the modified dice
+    updatedGameDice[index] = updatedDice;
+
+    setGameDice(updatedGameDice);
   };
 
   return (
