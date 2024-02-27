@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
+import GameScreen2 from "./screens/GameScreen2";
 import ScoreScreen from "./screens/ScoreScreen";
 import PekkaExample from "./screens/PekkaExample";
 
@@ -32,7 +33,7 @@ export default function App() {
           />
           <Stack.Screen
             name="Game"
-            component={GameScreen}
+            component={GameScreen2}
             options={{
               tabBarIcon: ({ size, color }) => {
                 return <Icon name="dice" size={size} color={color} />;

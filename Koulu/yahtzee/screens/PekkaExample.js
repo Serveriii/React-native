@@ -62,6 +62,7 @@ export default function PekkaExample() {
     setNbrOfThrowsLeft(nbrOfThrowsLeft - 1);
   };
 
+  
   const checkWinner = () => {
     if (board.every((val, i, arr) => val === arr[0]) && nbrOfThrowsLeft > 0) {
       setStatus("You won");
