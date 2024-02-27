@@ -11,6 +11,7 @@ import { dices } from "../data/Dices";
 let board = [];
 
 export default function GameScreen2() {
+    const [gameDice, setGameDice] = useState([]);
   const [selectedDices, setSelectedDices] = useState(
     new Array(dices.NBR_OF_DICES).fill(false)
   );
@@ -28,8 +29,8 @@ export default function GameScreen2() {
       </Pressable>
     );
   }
-
   const throwDice = () => {
+    setGameDice(row);
     for (let i = 0; i < dices.NBR_OF_DICES; i++) {
       if (!selectedDices[i]) {
         let randomNumber = Math.floor(Math.random() * 6 + 1);
