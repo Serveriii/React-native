@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Pressable } from "react-native";
 import { Button } from "react-native-paper";
 import { generalStyles } from "../styles/generalStyles";
@@ -8,22 +8,28 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { dices } from "../data/Dices";
 
-let diceRow = [<Icon name="dice" size={60} />];
+let diceRow = [<Icon name="dice" size={60} key={"s"} />];
+let board = [];
 
 export default function GameScreen() {
   const [gameDice, setGameDice] = useState([diceRow]);
-  const [outline, setOutline] = useState("-outline");
+  const [selectedDices, setSelectedDices] = useState(
+    new Array(dices.NBR_OF_DICES).fill(false)
+  );
 
-  const startGame = () => {
+  const throwDice = () => {
+    console.log(selectedDices);
+
     diceRow = [];
     for (let i = 0; i < dices.NBR_OF_DICES; i++) {
-      let random = Math.floor(Math.random() * 6) + 1;
+      let diceNumb = Math.floor(Math.random() * 6) + 1;
       diceRow.push(
-        <Pressable onPress={() => dicePress(i)}>
+        <Pressable key={i} onPress={() => dicePress(i, diceNumb)}>
           <MaterialCommunityIcons
-            name={"dice-" + [random] + outline}
+            name={"dice-" + diceNumb + "-outline"}
             size={50}
             key={i}
+            color={"black"}
           />
         </Pressable>
       );
@@ -31,18 +37,22 @@ export default function GameScreen() {
     setGameDice(diceRow);
   };
 
-  const dicePress = (index) => {
-    const updatedGameDice = [...gameDice];
-    const updatedDice = React.cloneElement(updatedGameDice[index], {
-      children: React.cloneElement(updatedGameDice[index].props.children, {
-        name: "dice-" + index, // Replace with your desired new name
+
+  const dicePress = (index, diceNumb) => {
+    let dices = [...selectedDices];
+    dices[index] = selectedDices[index] ? false : true;
+    setSelectedDices(dices);
+
+    const updatedDiceRow = [...diceRow];
+    const updatedDice = React.cloneElement(updatedDiceRow[index], {
+      children: React.cloneElement(updatedDiceRow[index].props.children, {
+        name: "dice-" + diceNumb,
       }),
     });
 
-    // Update the cloned array with the modified dice
-    updatedGameDice[index] = updatedDice;
+    updatedDiceRow[index] = updatedDice;
 
-    setGameDice(updatedGameDice);
+    setGameDice(updatedDiceRow);
   };
 
   return (
@@ -50,7 +60,7 @@ export default function GameScreen() {
       <Header text={"Mini-yahtzee"} />
       <View style={{ flexDirection: "row" }}>{gameDice}</View>
       <Text>Throws left: {dices.NBR_OF_THROWS}</Text>
-      <Button children="Throw dices" mode="contained" onPress={startGame} />
+      <Button children="Throw dices" mode="contained" onPress={throwDice} />
       <Footer text={"Author: Severi Jokelainen"} />
     </View>
   );
