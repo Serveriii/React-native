@@ -11,7 +11,7 @@ import { dices } from "../data/Dices";
 let board = [];
 
 export default function GameScreen2() {
-    const [gameDice, setGameDice] = useState([]);
+  const [gameDice, setGameDice] = useState([]);
   const [selectedDices, setSelectedDices] = useState(
     new Array(dices.NBR_OF_DICES).fill(false)
   );
