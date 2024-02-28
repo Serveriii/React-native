@@ -40,15 +40,6 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="Example"
-            component={PekkaExample}
-            options={{
-              tabBarIcon: ({ size, color }) => {
-                return <Icon name="dice" size={size} color={color} />;
-              },
-            }}
-          />
-          <Stack.Screen
             name="Score"
             component={ScoreScreen}
             options={{
