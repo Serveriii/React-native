@@ -7,23 +7,23 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { dices } from "../data/Dices";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
+import PointsRow from "../components/PointsRow";
 
 let board = [];
+let totals = [4, 5, 12, 16, 25, 26];
 
 export default function GameScreen2() {
   const [logo, setLogo] = useState(null);
-  const [gameDice, setGameDice] = useState([]);
+
+  const [throwsLeft, setThrowsLeft] = useState(dices.NBR_OF_THROWS);
   const [selectedDices, setSelectedDices] = useState(
     new Array(dices.NBR_OF_DICES).fill(false)
   );
 
   const row = [];
 
-
   useEffect(() => {
-    setLogo(<Icon name="dice" size={60} key={"s"} color={'#4E1599'} />);
-
+    setLogo(<Icon name="dice" size={60} key={"s"} color={"#4E1599"} />);
   }, []);
 
   for (let i = 0; i < dices.NBR_OF_DICES; i++) {
@@ -40,29 +40,44 @@ export default function GameScreen2() {
   }
   const throwDice = () => {
     setLogo(null);
-    setGameDice(row);
     for (let i = 0; i < dices.NBR_OF_DICES; i++) {
       if (!selectedDices[i]) {
         let randomNumber = Math.floor(Math.random() * 6 + 1);
         board[i] = "dice-" + randomNumber;
       }
     }
-    console.log(board);
-    
+    setThrowsLeft(throwsLeft - 1);
   };
 
-    function getDiceColor(i) {
-      if (board.every((val, i, arr) => val === arr[0])) {
-        return "#ffd700";
-      } else {
-        return selectedDices[i] ? "#991584" : "#6B4899";
-      }
+  function getDiceColor(i) {
+    if (board.every((val, i, arr) => val === arr[0])) {
+      return "#D49C37";
+    } else {
+      return selectedDices[i] ? "#991584" : "#6B4899";
     }
+  }
 
   const dicePress = (index) => {
     let dices = [...selectedDices];
     dices[index] = selectedDices[index] ? false : true;
     setSelectedDices(dices);
+  };
+
+  const restartGame = () => {
+    setThrowsLeft(dices.NBR_OF_THROWS);
+    setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
+    for (let i = 0; i < dices.NBR_OF_DICES; i++) {
+      row.push(
+        <Pressable key={"row" + i} onPress={() => dicePress(i)}>
+          <MaterialCommunityIcons
+            name={board[i]}
+            key={"row" + i}
+            size={50}
+            color={getDiceColor(i)}
+          ></MaterialCommunityIcons>
+        </Pressable>
+      );
+    }
   };
 
   return (
@@ -72,12 +87,23 @@ export default function GameScreen2() {
         {logo}
         {row}
       </View>
-      <Text>Throws left: {dices.NBR_OF_THROWS}</Text>
+      <Text>Throws left: {throwsLeft}</Text>
       <Button
         children="Throw dices"
         mode="contained"
         onPress={throwDice}
         buttonColor="#4f1699"
+      />
+      <Text>
+        Total points:{" "}
+        {totals.reduce((accumulator, currVal) => accumulator + currVal, 0)}{" "}
+      </Text>
+      <PointsRow totals={totals} />
+      <Button
+        children="Restart game"
+        mode="contained"
+        buttonColor="#4f1699"
+        onPress={restartGame}
       />
       <Footer text={"Author: Severi Jokelainen"} />
     </View>
