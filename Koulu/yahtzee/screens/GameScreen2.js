@@ -10,7 +10,7 @@ import { dices } from "../data/Dices";
 import PointsRow from "../components/PointsRow";
 
 let board = [];
-let totals = [4, 5, 12, 16, 25, 26];
+let totals = [0, 0, 0, 0, 0, 0];
 
 export default function GameScreen2() {
   const [logo, setLogo] = useState(null);
@@ -50,7 +50,9 @@ export default function GameScreen2() {
   }
   const throwDice = () => {
     setLogo(null);
+    console.log(selectedDices);
     if (throwsLeft === 0) {
+      
       setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
     }
     for (let i = 0; i < dices.NBR_OF_DICES; i++) {
@@ -71,7 +73,6 @@ export default function GameScreen2() {
   }
 
   const dicePress = (index) => {
-
       let dices = [...selectedDices];
       dices[index] = selectedDices[index] ? false : true;
       setSelectedDices(dices);
@@ -89,20 +90,10 @@ export default function GameScreen2() {
   };
 
   const restartGame = () => {
+    setLogo(<Icon name="dice" size={60} key={"s"} color={"#4E1599"}> </Icon>);
     setThrowsLeft(dices.NBR_OF_THROWS);
     setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
-    for (let i = 0; i < dices.NBR_OF_DICES; i++) {
-      row.push(
-        <Pressable key={"row" + i} onPress={() => dicePress(i)}>
-          <MaterialCommunityIcons
-            name={board[i]}
-            key={"row" + i}
-            size={50}
-            color={getDiceColor(i)}
-          ></MaterialCommunityIcons>
-        </Pressable>
-      );
-    }
+    board = [];
   };
 
   return (
