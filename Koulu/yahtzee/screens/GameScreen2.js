@@ -25,7 +25,7 @@ export default function GameScreen2() {
   useEffect(() => {
     setLogo(<Icon name="dice" size={60} key={"s"} color={"#4E1599"} />);
   }, []);
-  
+
   useEffect(() => {
     checkWinner();
     if (throwsLeft === dices.NBR_OF_THROWS) {
@@ -50,6 +50,9 @@ export default function GameScreen2() {
   }
   const throwDice = () => {
     setLogo(null);
+    if (throwsLeft === 0) {
+      setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
+    }
     for (let i = 0; i < dices.NBR_OF_DICES; i++) {
       if (!selectedDices[i]) {
         let randomNumber = Math.floor(Math.random() * 6 + 1);
@@ -68,27 +71,22 @@ export default function GameScreen2() {
   }
 
   const dicePress = (index) => {
-    let dices = [...selectedDices];
-    dices[index] = selectedDices[index] ? false : true;
-    setSelectedDices(dices);
+
+      let dices = [...selectedDices];
+      dices[index] = selectedDices[index] ? false : true;
+      setSelectedDices(dices);
+    
   };
 
   const checkWinner = () => {
-    if (board.every((val, i, arr) => val === arr[0]) && throwsLeft > 0) {
-      setStatus("You won");
-    } else if (
-      board.every((val, i, arr) => val === arr[0]) &&
-      throwsLeft === 0
-    ) {
-      setStatus("You won, game over");
-      setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
+    if (board.every((val, i, arr) => val === arr[0])) {
+      setStatus("Yahtzee!");
     } else if (throwsLeft === 0) {
-      setStatus("Game over");
-      setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
+      setStatus("Round over.");
     } else {
-      setStatus("Keep on throwing");
+      setStatus("Keep throwing!");
     }
-  }
+  };
 
   const restartGame = () => {
     setThrowsLeft(dices.NBR_OF_THROWS);
