@@ -14,7 +14,7 @@ let totals = [4, 5, 12, 16, 25, 26];
 
 export default function GameScreen2() {
   const [logo, setLogo] = useState(null);
-
+  const [status, setStatus] = useState("");
   const [throwsLeft, setThrowsLeft] = useState(dices.NBR_OF_THROWS);
   const [selectedDices, setSelectedDices] = useState(
     new Array(dices.NBR_OF_DICES).fill(false)
@@ -25,6 +25,16 @@ export default function GameScreen2() {
   useEffect(() => {
     setLogo(<Icon name="dice" size={60} key={"s"} color={"#4E1599"} />);
   }, []);
+  
+  useEffect(() => {
+    checkWinner();
+    if (throwsLeft === dices.NBR_OF_THROWS) {
+      setStatus("Game has not started");
+    }
+    if (throwsLeft < 0) {
+      setThrowsLeft(dices.NBR_OF_THROWS - 1);
+    }
+  }, [throwsLeft]);
 
   for (let i = 0; i < dices.NBR_OF_DICES; i++) {
     row.push(
@@ -63,6 +73,23 @@ export default function GameScreen2() {
     setSelectedDices(dices);
   };
 
+  const checkWinner = () => {
+    if (board.every((val, i, arr) => val === arr[0]) && throwsLeft > 0) {
+      setStatus("You won");
+    } else if (
+      board.every((val, i, arr) => val === arr[0]) &&
+      throwsLeft === 0
+    ) {
+      setStatus("You won, game over");
+      setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
+    } else if (throwsLeft === 0) {
+      setStatus("Game over");
+      setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
+    } else {
+      setStatus("Keep on throwing");
+    }
+  }
+
   const restartGame = () => {
     setThrowsLeft(dices.NBR_OF_THROWS);
     setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
@@ -88,6 +115,7 @@ export default function GameScreen2() {
         {row}
       </View>
       <Text>Throws left: {throwsLeft}</Text>
+      <Text>{status}</Text>
       <Button
         children="Throw dices"
         mode="contained"
