@@ -23,6 +23,7 @@ export default function PointsRow(props) {
 
   return (
     <View style={styles.container}>
+        <Text style={styles.points}>{props.board}</Text>
       <View style={styles.row}>
         {props.totals.map(
             (total, index) =>

@@ -50,10 +50,13 @@ export default function GameScreen2() {
   }
   const throwDice = () => {
     setLogo(null);
-    console.log(selectedDices);
+    console.log(board);
     if (throwsLeft === 0) {
-      
       setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
+      for (let i = 0; i < dices.NBR_OF_DICES; i++) {
+        let randomNumber = Math.floor(Math.random() * 6 + 1);
+        board[i] = "dice-" + randomNumber;
+      }
     }
     for (let i = 0; i < dices.NBR_OF_DICES; i++) {
       if (!selectedDices[i]) {
@@ -73,10 +76,9 @@ export default function GameScreen2() {
   }
 
   const dicePress = (index) => {
-      let dices = [...selectedDices];
-      dices[index] = selectedDices[index] ? false : true;
-      setSelectedDices(dices);
-    
+    let dices = [...selectedDices];
+    dices[index] = selectedDices[index] ? false : true;
+    setSelectedDices(dices);
   };
 
   const checkWinner = () => {
@@ -90,7 +92,11 @@ export default function GameScreen2() {
   };
 
   const restartGame = () => {
-    setLogo(<Icon name="dice" size={60} key={"s"} color={"#4E1599"}> </Icon>);
+    setLogo(
+      <Icon name="dice" size={60} key={"s"} color={"#4E1599"}>
+        {" "}
+      </Icon>
+    );
     setThrowsLeft(dices.NBR_OF_THROWS);
     setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
     board = [];
@@ -115,7 +121,7 @@ export default function GameScreen2() {
         Total points:{" "}
         {totals.reduce((accumulator, currVal) => accumulator + currVal, 0)}{" "}
       </Text>
-      <PointsRow totals={totals} />
+      <PointsRow totals={totals} board={board} />
       <Button
         children="Restart game"
         mode="contained"
