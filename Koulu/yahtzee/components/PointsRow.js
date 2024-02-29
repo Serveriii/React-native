@@ -11,7 +11,7 @@ let numbers = [];
 
 export default function PointsRow(props) {
   const [counts, setCounts] = useState({});
-  const {totalSum, setTotalSum} = useContext(context);
+  const { totalSum, setTotalSum } = useContext(context);
   const { pointState, setPointState } = useContext(context);
   const { throwsLeft, setThrowsLeft } = useContext(context);
 
@@ -39,22 +39,23 @@ export default function PointsRow(props) {
   ));
 
   const selectPoints = (i, counts) => {
-    let newPointState = [...pointState];
-    newPointState[i] = true;
-    console.log(Object.values(counts));
-    if (Object.values(counts)[i] === 0) {
+    if (pointState[i] === true) {
+      alert("You have already selected this point.");
+    } else if (Object.values(counts)[i] === 0) {
       alert(
         "You have to land this dice at least once before you can select this point."
       );
-    } else if (pointState[i] === false) {
+    }
+
+    if (pointState[i] === false) {
+      let newPointState = [...pointState];
+      newPointState[i] = true;
       let sum = Object.values(counts)[i];
       let newTotalSum = totalSum + sum;
       setTotalSum(newTotalSum);
       setPointState(newPointState);
       props.throwDice();
       setThrowsLeft(dices.NBR_OF_THROWS - 1);
-    } else {
-      alert("You have already selected this point.");
     }
 
     (async () => {
