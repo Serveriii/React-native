@@ -6,13 +6,12 @@ import { styles } from "../styles/gameStyles";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { dices } from "../data/Dices";
 
-
 const POINTS = 6;
 let numbers = [];
 
 export default function PointsRow(props) {
   const [counts, setCounts] = useState({});
-  const [totalSum, setTotalSum] = useState(0);
+  const {totalSum, setTotalSum} = useContext(context);
   const { pointState, setPointState } = useContext(context);
   const { throwsLeft, setThrowsLeft } = useContext(context);
 
@@ -42,22 +41,18 @@ export default function PointsRow(props) {
   const selectPoints = (i, counts) => {
     let newPointState = [...pointState];
     newPointState[i] = true;
-    console.log(Object.keys(counts)[i]);
     console.log(Object.values(counts));
-    
-    if (pointState[i] === false){
+    if (Object.values(counts)[i] === 0) {
+      alert(
+        "You have to land this dice at least once before you can select this point."
+      );
+    } else if (pointState[i] === false) {
       let sum = Object.values(counts)[i];
       let newTotalSum = totalSum + sum;
-      Object.keys(counts).forEach((number, i) => {
-        if (counts.key === !i) {
-          counts[number] = 0;
-        }
-      });
-
       setTotalSum(newTotalSum);
       setPointState(newPointState);
       props.throwDice();
-      setThrowsLeft(dices.NBR_OF_THROWS);
+      setThrowsLeft(dices.NBR_OF_THROWS - 1);
     } else {
       alert("You have already selected this point.");
     }

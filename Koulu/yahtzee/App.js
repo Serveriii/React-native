@@ -16,13 +16,16 @@ export default function App() {
     new Array(dices.MAX_SPOT).fill(false)
   );
   const [throwsLeft, setThrowsLeft] = useState(dices.NBR_OF_THROWS);
+  const [totalSum, setTotalSum] = useState(0);
   let board = [];
   const providerValue = {
     pointState,
     setPointState,
     throwsLeft,
     setThrowsLeft,
-    board
+    board,
+    totalSum,
+    setTotalSum,
   };
 
   return (

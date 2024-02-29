@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { View, Text, Pressable } from "react-native";
 import { Button } from "react-native-paper";
 import { generalStyles } from "../styles/generalStyles";
@@ -10,20 +10,18 @@ import { dices } from "../data/Dices";
 import PointsRow from "../components/PointsRow";
 import { context } from "../components/Context";
 
-
-
 let board = [];
 let totals = [0, 0, 0, 0, 0, 0];
 
 export default function GameScreen2({ navigation }) {
   const [logo, setLogo] = useState(null);
   const [status, setStatus] = useState("");
-  
   const [selectedDices, setSelectedDices] = useState(
     new Array(dices.NBR_OF_DICES).fill(false)
   );
   const { pointState, setPointState } = useContext(context);
   const { throwsLeft, setThrowsLeft } = useContext(context);
+  const { totalSum, setTotalSum } = useContext(context);
   const row = [];
 
   useEffect(() => {
@@ -33,8 +31,8 @@ export default function GameScreen2({ navigation }) {
   useEffect(() => {
     checkWinner();
     if (throwsLeft === dices.NBR_OF_THROWS) {
-      setStatus("Game has not started");
-    } 
+      setStatus("Game not started");
+    }
     if (throwsLeft < 0) {
       setThrowsLeft(dices.NBR_OF_THROWS - 1);
     }
@@ -103,6 +101,7 @@ export default function GameScreen2({ navigation }) {
     setPointState(new Array(dices.MAX_SPOT).fill(false));
     setThrowsLeft(dices.NBR_OF_THROWS);
     setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
+    setTotalSum(0);
     board = [];
   };
 
