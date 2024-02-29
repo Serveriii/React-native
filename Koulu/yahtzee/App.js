@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { context } from "./components/Context";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
@@ -6,13 +7,22 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen2 from "./screens/GameScreen2";
 import ScoreScreen from "./screens/ScoreScreen";
-import PekkaExample from "./screens/PekkaExample";
+import { dices } from "./data/Dices";
+
 
 const Stack = createBottomTabNavigator();
 
 export default function App() {
+
+    const [pointState, setPointState] = useState(
+      new Array(dices.MAX_SPOT).fill(false)
+    );
+
+    const providerValue = {pointState, setPointState};
+
   return (
     <PaperProvider>
+      <context.Provider value={providerValue}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -50,6 +60,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </context.Provider>
     </PaperProvider>
   );
 }

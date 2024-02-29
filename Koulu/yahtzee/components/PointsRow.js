@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useContext } from "react";
 import { View, Text, Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { context } from "./Context";
 import { styles } from "../styles/gameStyles";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { dices } from "../data/Dices";
@@ -11,9 +12,8 @@ let numbers = [];
 export default function PointsRow(props) {
   const [counts, setCounts] = useState({});
   const [totalSum, setTotalSum] = useState(0);
-  const [pointState, setPointState] = useState(
-    new Array(dices.MAX_SPOT).fill(false)
-  );
+  const { pointState, setPointState } = useContext(context);
+
   useEffect(() => {
     let numbers = props.board.map((item) => Number(item.match(/\d+/)[0]));
 
@@ -38,24 +38,26 @@ export default function PointsRow(props) {
   ));
 
   const selectPoints = (i, counts) => {
-    console.log(pointState[i]);
     let newPointState = [...pointState];
     newPointState[i] = true;
-    setPointState(newPointState);
-
+    console.log(Object.keys(counts)[i]);
+    console.log(Object.values(counts));
     
-    if (pointState[i] === false) {
+    if (pointState[i] === false){
       let sum = Object.values(counts)[i];
       let newTotalSum = totalSum + sum;
-      console.log(pointState[i]);
+      Object.keys(counts).forEach((number, i) => {
+        if (counts.key === !i) {
+          counts[number] = 0;
+        }
+      });
 
       setTotalSum(newTotalSum);
-      setCounts({ ...counts, [i + 1]: sum });
+      setPointState(newPointState);
     } else {
       alert("You have already selected this point.");
     }
 
-    return newPointState[i];
     (async () => {
       try {
         await AsyncStorage.setItem("totalSum", totalSum.toString());

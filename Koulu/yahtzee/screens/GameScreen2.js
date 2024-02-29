@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { View, Text, Pressable } from "react-native";
 import { Button } from "react-native-paper";
 import { generalStyles } from "../styles/generalStyles";
@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { dices } from "../data/Dices";
 import PointsRow from "../components/PointsRow";
+import { context } from "../components/Context";
 
 let board = [];
 let totals = [0, 0, 0, 0, 0, 0];
@@ -19,7 +20,7 @@ export default function GameScreen2({ navigation }) {
   const [selectedDices, setSelectedDices] = useState(
     new Array(dices.NBR_OF_DICES).fill(false)
   );
-
+  const { pointState, setPointState } = useContext(context);
   const row = [];
 
   useEffect(() => {
@@ -96,6 +97,7 @@ export default function GameScreen2({ navigation }) {
         {" "}
       </Icon>
     );
+    setPointState(new Array(dices.MAX_SPOT).fill(false));
     setThrowsLeft(dices.NBR_OF_THROWS);
     setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
     board = [];

@@ -70,7 +70,7 @@ export default function HomeScreen({ navigation}) {
     <View style={generalStyles.scaffold}>
       <Header text={"Rules of the game"} />
       <View style={homeStyles.container}>
-        <Text>
+        <Text style={{alignItems: 'center', padding: 20}}>
           THE GAME: Upper section of the classic Yahtzee dice game. You have{" "}
           {dices.NBR_OF_DICES} dices and for the every dice you have {dices.NBR_OF_THROWS}
           throws. After each throw you can keep dices in order to get same dice
