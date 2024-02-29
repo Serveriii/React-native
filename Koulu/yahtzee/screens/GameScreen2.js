@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { View, Text, Pressable } from "react-native";
 import { Button } from "react-native-paper";
 import { generalStyles } from "../styles/generalStyles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Header from "../components/Header";
@@ -104,6 +105,17 @@ export default function GameScreen2({ navigation }) {
     setTotalSum(0);
     board = [];
   };
+    const setScores = async () => {
+      try {
+        await AsyncStorage.setItem(
+          "@scoreboard:key, score",
+          totalSum.toString()
+        );
+      } catch (error) {
+        console.log("Error saving score");
+      }
+      navigation.navigate("Score");
+    };
 
   if (pointState.every((val) => val === true)) {
     return (
@@ -115,7 +127,7 @@ export default function GameScreen2({ navigation }) {
           children="Scoreboard"
           mode="contained"
           buttonColor="#4f1699"
-          onPress={() => navigation.navigate("Score")}
+          onPress={setScores}
         />
         <Button
           children="Restart game"

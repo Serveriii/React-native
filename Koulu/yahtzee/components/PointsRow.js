@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useCallback, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { View, Text, Pressable } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { context } from "./Context";
 import { styles } from "../styles/gameStyles";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { dices } from "../data/Dices";
 
-const POINTS = 6;
-let numbers = [];
 
 export default function PointsRow(props, { navigation }) {
   const [counts, setCounts] = useState({});
@@ -16,7 +14,6 @@ export default function PointsRow(props, { navigation }) {
   const { throwsLeft, setThrowsLeft } = useContext(context);
 
   useEffect(() => {
-
     let numbers = props.board.map((item) => Number(item.match(/\d+/)[0]));
 
     let allNumbers = Array.from({ length: 6 }, (_, i) => i + 1);
@@ -42,7 +39,7 @@ export default function PointsRow(props, { navigation }) {
   const selectPoints = (i, counts) => {
     if (pointState[i] === true) {
       alert("You have already selected this point.");
-    } 
+    }
     if (Object.values(counts)[i] === 0) {
       alert(
         "You have to land this dice at least once before you can select this point."
@@ -57,15 +54,10 @@ export default function PointsRow(props, { navigation }) {
       props.throwDice();
       setThrowsLeft(dices.NBR_OF_THROWS - 1);
     }
-    console.log(pointState);
-    (async () => {
-      try {
-        await AsyncStorage.setItem("totalSum", totalSum.toString());
-      } catch (error) {
-        console.log("Error saving totalSum");
-      }
-    })();
   };
+
+
+  
 
   const pointColor = (i, color) => {
     if (pointState[i] === true) {
@@ -76,10 +68,10 @@ export default function PointsRow(props, { navigation }) {
     } else {
       return "green";
     }
-  };
+  }
 
   const points = [];
-  for (let i = 0; i < POINTS; i++) {
+  for (let i = 0; i < dices.MAX_SPOT; i++) {
     points.push(
       <Pressable key={"row" + i} onPress={() => selectPoints(i, counts)}>
         <MaterialCommunityIcons
@@ -103,12 +95,12 @@ export default function PointsRow(props, { navigation }) {
       </View>
     );
   } else {
-  return (
-    <View style={styles.container}>
-      <Text>Total points: {totalSum}</Text>
-      <View style={styles.row}>{counters}</View>
-      <View style={styles.row}>{points}</View>
-    </View>
-  );
-}
+    return (
+      <View style={styles.container}>
+        <Text>Total points: {totalSum}</Text>
+        <View style={styles.row}>{counters}</View>
+        <View style={styles.row}>{points}</View>
+      </View>
+    );
+  }
 }
