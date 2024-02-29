@@ -105,6 +105,28 @@ export default function GameScreen2({ navigation }) {
     board = [];
   };
 
+  if (pointState.every((val) => val === true)) {
+    return (
+      <View style={generalStyles.scaffold}>
+        <Header text={"Mini-yahtzee"} />
+        <Text>Game over</Text>
+        <Text>Total points: {totalSum}</Text>
+        <Button
+          children="Scoreboard"
+          mode="contained"
+          buttonColor="#4f1699"
+          onPress={() => navigation.navigate("Score")}
+        />
+        <Button
+          children="Restart game"
+          mode="contained"
+          buttonColor="#4f1699"
+          onPress={restartGame}
+        />
+        <Footer text={"Author: Severi Jokelainen"} />
+      </View>
+    );
+  } else {
   return (
     <View style={generalStyles.scaffold}>
       <Header text={"Mini-yahtzee"} />
@@ -130,4 +152,5 @@ export default function GameScreen2({ navigation }) {
       <Footer text={"Author: Severi Jokelainen"} />
     </View>
   );
+}
 }

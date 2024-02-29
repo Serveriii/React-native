@@ -9,13 +9,14 @@ import { dices } from "../data/Dices";
 const POINTS = 6;
 let numbers = [];
 
-export default function PointsRow(props) {
+export default function PointsRow(props, { navigation }) {
   const [counts, setCounts] = useState({});
   const { totalSum, setTotalSum } = useContext(context);
   const { pointState, setPointState } = useContext(context);
   const { throwsLeft, setThrowsLeft } = useContext(context);
 
   useEffect(() => {
+
     let numbers = props.board.map((item) => Number(item.match(/\d+/)[0]));
 
     let allNumbers = Array.from({ length: 6 }, (_, i) => i + 1);
@@ -41,13 +42,12 @@ export default function PointsRow(props) {
   const selectPoints = (i, counts) => {
     if (pointState[i] === true) {
       alert("You have already selected this point.");
-    } else if (Object.values(counts)[i] === 0) {
+    } 
+    if (Object.values(counts)[i] === 0) {
       alert(
         "You have to land this dice at least once before you can select this point."
       );
-    }
-
-    if (pointState[i] === false) {
+    } else if (pointState[i] === false) {
       let newPointState = [...pointState];
       newPointState[i] = true;
       let sum = Object.values(counts)[i];
@@ -57,7 +57,7 @@ export default function PointsRow(props) {
       props.throwDice();
       setThrowsLeft(dices.NBR_OF_THROWS - 1);
     }
-
+    console.log(pointState);
     (async () => {
       try {
         await AsyncStorage.setItem("totalSum", totalSum.toString());
@@ -93,6 +93,16 @@ export default function PointsRow(props) {
     );
   }
 
+  if (pointState.every((val) => val === true)) {
+    return (
+      <View style={styles.container}>
+        <Text>Game over</Text>
+        <Text>Total points: {totalSum}</Text>
+        <View style={styles.row}>{counters}</View>
+        <View style={styles.row}>{points}</View>
+      </View>
+    );
+  } else {
   return (
     <View style={styles.container}>
       <Text>Total points: {totalSum}</Text>
@@ -100,4 +110,5 @@ export default function PointsRow(props) {
       <View style={styles.row}>{points}</View>
     </View>
   );
+}
 }
