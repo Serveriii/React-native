@@ -12,7 +12,7 @@ import PointsRow from "../components/PointsRow";
 let board = [];
 let totals = [0, 0, 0, 0, 0, 0];
 
-export default function GameScreen2({navigation}) {
+export default function GameScreen2({ navigation }) {
   const [logo, setLogo] = useState(null);
   const [status, setStatus] = useState("");
   const [throwsLeft, setThrowsLeft] = useState(dices.NBR_OF_THROWS);
@@ -116,10 +116,6 @@ export default function GameScreen2({navigation}) {
         onPress={throwDice}
         buttonColor="#4f1699"
       />
-      <Text>
-        Total points:{" "}
-        {totals.reduce((accumulator, currVal) => accumulator + currVal, 0)}{" "}
-      </Text>
       <PointsRow totals={totals} board={board} />
       <Button
         children="Restart game"

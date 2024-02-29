@@ -1,27 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { View, Text, Pressable } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../styles/gameStyles";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const POINTS = 6;
+let numbers = [];
 
-export default function PointsRow(props, { navigation }) {
-  board = props.board;
+export default function PointsRow(props) {
+  const [counts, setCounts] = useState({});
+  const [totalSum, setTotalSum] = useState(0);
 
   useEffect(() => {
-    const boardChecker = setInterval(() => {
-      console.log(board);
-    }, 1000);
+    let numbers = props.board.map((item) => Number(item.match(/\d+/)[0]));
 
-    return() => {
-      
+    let allNumbers = Array.from({ length: 6 }, (_, i) => i + 1);
+
+    const countsObject = allNumbers.reduce((acc, num) => {
+      acc[num] = numbers.filter((n) => n === num).length;
+      return acc;
+    }, {});
+
+    for (let i = 1; i <= 6; i++) {
+      if (countsObject[i]) {
+        let sum = countsObject[i] * i;
+        countsObject[i] = sum;
+      }
     }
-  }, []);
 
-  const row = [];
+    sum = Object.values(countsObject).reduce((acc, val) => acc + val, 0);
+    setTotalSum(sum);
+    setCounts(countsObject);
+  }, [props]);
+
+  const selectPoints = (counts) => {
+    console.log(Object.entries(counts));
+
+    // setTotalSum(totalPoints);
+
+    (async () => {
+      try {
+        await AsyncStorage.setItem("totalSum", totalSum.toString());
+      } catch (error) {
+        console.log("Error saving totalSum");
+      }
+    })();
+  };
+
+  const points = [];
   for (let i = 0; i < POINTS; i++) {
-    row.push(
-      <Pressable key={"row" + i} onPress={() => {}}>
+    points.push(
+      <Pressable key={"row" + i} onPress={() => selectPoints(counts)}>
         <MaterialCommunityIcons
           name={"numeric-" + (i + 1) + "-box"}
           key={"row" + i}
@@ -34,18 +63,15 @@ export default function PointsRow(props, { navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.points}>{props.board}</Text>
+      <Text>Total points: {totalSum}</Text>
       <View style={styles.row}>
-        {props.totals.map(
-          (total, index) =>
-            index < POINTS && (
-              <Text key={index} style={styles.totaltext}>
-                {total}
-              </Text>
-            )
-        )}
+        <Text>
+          {Object.entries(counts).map(([number, count]) => (
+            <Text key={number}>{`     ${count}   `}</Text>
+          ))}
+        </Text>
       </View>
-      <View style={styles.row}>{row}</View>
+      <View style={styles.row}>{points}</View>
     </View>
   );
 }
