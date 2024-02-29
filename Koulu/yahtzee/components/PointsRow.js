@@ -27,16 +27,15 @@ export default function PointsRow(props) {
         countsObject[i] = sum;
       }
     }
-
-    sum = Object.values(countsObject).reduce((acc, val) => acc + val, 0);
-    setTotalSum(sum);
     setCounts(countsObject);
   }, [props]);
 
-  const selectPoints = (counts) => {
-    console.log(Object.entries(counts));
-
-    // setTotalSum(totalPoints);
+  const selectPoints = (i, counts) => {
+    console.log(Object.values(counts)[i]);
+    props.restart();
+    let sum = Object.values(counts)[i];
+    let newTotalSum = totalSum + sum;
+    setTotalSum(newTotalSum);
 
     (async () => {
       try {
@@ -47,15 +46,23 @@ export default function PointsRow(props) {
     })();
   };
 
+  const pointColor = (i) => {
+    if (Object.values(counts)[i] === 0) {
+      return "black";
+    } else {
+      return "green";
+    }
+  };
+
   const points = [];
   for (let i = 0; i < POINTS; i++) {
     points.push(
-      <Pressable key={"row" + i} onPress={() => selectPoints(counts)}>
+      <Pressable key={"row" + i} onPress={() => selectPoints(i, counts)}>
         <MaterialCommunityIcons
           name={"numeric-" + (i + 1) + "-box"}
           key={"row" + i}
           size={40}
-          color={"#6B4899"}
+          color={pointColor(i)}
         ></MaterialCommunityIcons>
       </Pressable>
     );

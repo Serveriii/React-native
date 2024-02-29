@@ -116,7 +116,7 @@ export default function GameScreen2({ navigation }) {
         onPress={throwDice}
         buttonColor="#4f1699"
       />
-      <PointsRow totals={totals} board={board} />
+      <PointsRow totals={totals} board={board} restart={restartGame} />
       <Button
         children="Restart game"
         mode="contained"
