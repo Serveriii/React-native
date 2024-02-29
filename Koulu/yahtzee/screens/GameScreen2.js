@@ -10,17 +10,20 @@ import { dices } from "../data/Dices";
 import PointsRow from "../components/PointsRow";
 import { context } from "../components/Context";
 
+
+
 let board = [];
 let totals = [0, 0, 0, 0, 0, 0];
 
 export default function GameScreen2({ navigation }) {
   const [logo, setLogo] = useState(null);
   const [status, setStatus] = useState("");
-  const [throwsLeft, setThrowsLeft] = useState(dices.NBR_OF_THROWS);
+  
   const [selectedDices, setSelectedDices] = useState(
     new Array(dices.NBR_OF_DICES).fill(false)
   );
   const { pointState, setPointState } = useContext(context);
+  const { throwsLeft, setThrowsLeft } = useContext(context);
   const row = [];
 
   useEffect(() => {
@@ -31,7 +34,7 @@ export default function GameScreen2({ navigation }) {
     checkWinner();
     if (throwsLeft === dices.NBR_OF_THROWS) {
       setStatus("Game has not started");
-    }
+    } 
     if (throwsLeft < 0) {
       setThrowsLeft(dices.NBR_OF_THROWS - 1);
     }
@@ -85,7 +88,7 @@ export default function GameScreen2({ navigation }) {
     if (board.every((val, i, arr) => val === arr[0])) {
       setStatus("Yahtzee!");
     } else if (throwsLeft === 0) {
-      setStatus("Round over.");
+      setStatus("Round over. Choose your points!");
     } else {
       setStatus("Keep throwing!");
     }
@@ -118,7 +121,7 @@ export default function GameScreen2({ navigation }) {
         onPress={throwDice}
         buttonColor="#4f1699"
       />
-      <PointsRow totals={totals} board={board} restart={restartGame} />
+      <PointsRow board={board} throwDice={throwDice} />
       <Button
         children="Restart game"
         mode="contained"

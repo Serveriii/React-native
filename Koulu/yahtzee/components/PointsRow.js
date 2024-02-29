@@ -6,6 +6,7 @@ import { styles } from "../styles/gameStyles";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { dices } from "../data/Dices";
 
+
 const POINTS = 6;
 let numbers = [];
 
@@ -13,6 +14,7 @@ export default function PointsRow(props) {
   const [counts, setCounts] = useState({});
   const [totalSum, setTotalSum] = useState(0);
   const { pointState, setPointState } = useContext(context);
+  const { throwsLeft, setThrowsLeft } = useContext(context);
 
   useEffect(() => {
     let numbers = props.board.map((item) => Number(item.match(/\d+/)[0]));
@@ -54,6 +56,8 @@ export default function PointsRow(props) {
 
       setTotalSum(newTotalSum);
       setPointState(newPointState);
+      props.throwDice();
+      setThrowsLeft(dices.NBR_OF_THROWS);
     } else {
       alert("You have already selected this point.");
     }
