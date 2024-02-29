@@ -12,7 +12,7 @@ import PointsRow from "../components/PointsRow";
 let board = [];
 let totals = [0, 0, 0, 0, 0, 0];
 
-export default function GameScreen2() {
+export default function GameScreen2({navigation}) {
   const [logo, setLogo] = useState(null);
   const [status, setStatus] = useState("");
   const [throwsLeft, setThrowsLeft] = useState(dices.NBR_OF_THROWS);
@@ -50,7 +50,6 @@ export default function GameScreen2() {
   }
   const throwDice = () => {
     setLogo(null);
-    console.log(board);
     if (throwsLeft === 0) {
       setSelectedDices(new Array(dices.NBR_OF_DICES).fill(false));
       for (let i = 0; i < dices.NBR_OF_DICES; i++) {
