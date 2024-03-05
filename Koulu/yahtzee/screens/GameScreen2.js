@@ -105,17 +105,20 @@ export default function GameScreen2({ navigation }) {
     setTotalSum(0);
     board = [];
   };
-    const setScores = async () => {
-      try {
-        await AsyncStorage.setItem(
-          "@scoreboard:key, score",
-          totalSum.toString()
-        );
-      } catch (error) {
-        console.log("Error saving score");
-      }
-      navigation.navigate("Score");
-    };
+  const setScores = async () => {
+    let timestamp = new Date().getTime().toString();
+    let date = new Date().toLocaleString();
+    try {
+      await AsyncStorage.setItem(
+        "@scoreboard:key, score " + timestamp,
+        totalSum.toString()
+      );
+      await AsyncStorage.setItem("@scoreboard:key, date " + timestamp, date);
+    } catch (error) {
+      console.log("Error saving score");
+    }
+    navigation.navigate("Score");
+  };
 
   if (pointState.every((val) => val === true)) {
     return (
@@ -139,30 +142,30 @@ export default function GameScreen2({ navigation }) {
       </View>
     );
   } else {
-  return (
-    <View style={generalStyles.scaffold}>
-      <Header text={"Mini-yahtzee"} />
-      <View style={{ flexDirection: "row" }}>
-        {logo}
-        {row}
+    return (
+      <View style={generalStyles.scaffold}>
+        <Header text={"Mini-yahtzee"} />
+        <View style={{ flexDirection: "row" }}>
+          {logo}
+          {row}
+        </View>
+        <Text>Throws left: {throwsLeft}</Text>
+        <Text>{status}</Text>
+        <Button
+          children="Throw dices"
+          mode="contained"
+          onPress={throwDice}
+          buttonColor="#4f1699"
+        />
+        <PointsRow board={board} throwDice={throwDice} />
+        <Button
+          children="Restart game"
+          mode="contained"
+          buttonColor="#4f1699"
+          onPress={restartGame}
+        />
+        <Footer text={"Author: Severi Jokelainen"} />
       </View>
-      <Text>Throws left: {throwsLeft}</Text>
-      <Text>{status}</Text>
-      <Button
-        children="Throw dices"
-        mode="contained"
-        onPress={throwDice}
-        buttonColor="#4f1699"
-      />
-      <PointsRow board={board} throwDice={throwDice} />
-      <Button
-        children="Restart game"
-        mode="contained"
-        buttonColor="#4f1699"
-        onPress={restartGame}
-      />
-      <Footer text={"Author: Severi Jokelainen"} />
-    </View>
-  );
-}
+    );
+  }
 }

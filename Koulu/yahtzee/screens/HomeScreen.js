@@ -9,13 +9,13 @@ import Footer from "../components/Footer";
 import {dices} from "../data/Dices";
 
 export default function HomeScreen({ navigation}) {
-  const [name, setName] = useState(null);
+  const [name, setName] = useState('');
   const [isName, setIsName] = useState(false);
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState(null);
 
   useEffect(() => {
-    let date = new Date().toLocaleDateString();
+    let date = new Date().toLocaleString();
     (async () => {
       try {
         await AsyncStorage.setItem("@scoreboard:key, date", date);
