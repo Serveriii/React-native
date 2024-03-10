@@ -31,7 +31,7 @@ export default function HomeScreen({ navigation }) {
     Oswald_600SemiBold,
     Oswald_700Bold,
   });
-
+  // Date is updated every second and saved to storage on screen load
   useEffect(() => {
     const updateDate = () => {
       let currentDate = new Date().toLocaleString();
@@ -52,6 +52,7 @@ export default function HomeScreen({ navigation }) {
     return () => clearInterval(interval);
   }, [date]);
 
+  // Name is saved to storage
   const buttonHandler = async () => {
     try {
       await AsyncStorage.setItem("@scoreboard:key, name", name);
@@ -72,6 +73,7 @@ export default function HomeScreen({ navigation }) {
       </View>
     );
   }
+  // Return name input form if name is not set
   if (!isName) {
     return (
       <View style={generalStyles.scaffold}>
@@ -96,6 +98,7 @@ export default function HomeScreen({ navigation }) {
       </View>
     );
   }
+  // Return game instructions if name is set
   return (
     <View style={generalStyles.scaffold}>
       <Header text={"Rules of the game"} />
