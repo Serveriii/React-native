@@ -6,6 +6,7 @@ export const homeStyles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#d8d4dd",
   },
   input: {
     margin: 10,

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { View, Text, Pressable } from "react-native";
-
 import { context } from "./Context";
 import { styles } from "../styles/gameStyles";
+import { generalStyles } from "../styles/generalStyles";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { dices } from "../data/Dices";
 
@@ -97,7 +97,7 @@ export default function PointsRow(props, { navigation }) {
   } else {
     return (
       <View style={styles.container}>
-        <Text>Total points: {totalSum}</Text>
+        <Text style={generalStyles.text}>Total points: {totalSum}</Text>
         <View style={styles.row}>{counters}</View>
         <View style={styles.row}>{points}</View>
       </View>

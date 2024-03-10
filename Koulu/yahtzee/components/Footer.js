@@ -5,7 +5,9 @@ import { generalStyles } from "../styles/generalStyles";
 export default function Footer(props) {
   return (
     <View style={generalStyles.footer}>
-      <Text style={{color: 'white'}}>{props.text}</Text>
+      <Text style={generalStyles.footerText}>
+        {props.text}
+      </Text>
     </View>
   );
 }

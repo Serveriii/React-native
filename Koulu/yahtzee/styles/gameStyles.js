@@ -7,6 +7,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
+  gameover: {
+    fontSize: 30,
+    padding: 20,
+    color: "#4f1699",
+    fontFamily: "Oswald_400Regular",
+  },
   row: {
     flexDirection: "row",
     justifyContent: "space-evenly",

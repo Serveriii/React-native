@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { View, Text, Pressable } from "react-native";
 import { Button } from "react-native-paper";
 import { generalStyles } from "../styles/generalStyles";
+import { styles } from "../styles/gameStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -12,7 +13,6 @@ import PointsRow from "../components/PointsRow";
 import { context } from "../components/Context";
 
 let board = [];
-let totals = [0, 0, 0, 0, 0, 0];
 
 export default function GameScreen2({ navigation }) {
   const [logo, setLogo] = useState(null);
@@ -124,12 +124,13 @@ export default function GameScreen2({ navigation }) {
     return (
       <View style={generalStyles.scaffold}>
         <Header text={"Mini-yahtzee"} />
-        <Text>Game over</Text>
-        <Text>Total points: {totalSum}</Text>
+        <Text style={styles.gameover}>Game over!</Text>
+        <Text style={{...styles.gameover, color: 'black'}}>Total points: {totalSum}</Text>
         <Button
           children="Scoreboard"
           mode="contained"
           buttonColor="#4f1699"
+
           onPress={setScores}
         />
         <Button
@@ -149,8 +150,8 @@ export default function GameScreen2({ navigation }) {
           {logo}
           {row}
         </View>
-        <Text>Throws left: {throwsLeft}</Text>
-        <Text>{status}</Text>
+        <Text style={generalStyles.text}>Throws left: {throwsLeft}</Text>
+        <Text style={generalStyles.text}>{status}</Text>
         <Button
           children="Throw dices"
           mode="contained"
