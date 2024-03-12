@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import { View, Text } from "react-native";
 import { Button } from "react-native-paper";
 import { generalStyles } from "../styles/generalStyles";
@@ -8,6 +8,7 @@ import { context } from "../components/Context";
 export default function ScoreScreen({ navigation }) {
   const { totalSum, setTotalSum } = useContext(context);
   const [scores, setScores] = useState([]);
+  const prevTotalSum = useRef(totalSum);
 
   useEffect(() => {
     const showScores = navigation.addListener("focus", () => {
@@ -26,10 +27,16 @@ export default function ScoreScreen({ navigation }) {
       } else if (score === 0) {
         return;
       }
+      if (prevTotalSum.current === totalSum) {
+        console.log(prevTotalSum.current);
+        console.log(totalSum);
+        return;
+      } else if (prevTotalSum.current !== totalSum) {
+        prevTotalSum.current = totalSum;
+      } 
       let newScore = { name: name, date: date, score: score };
       let newScores = [...scores, newScore];
       setScores((prevScores) => [...prevScores, newScore]);
-      console.log(newScores);
     } catch (error) {
       console.log("Error getting scoreboard", error);
     }
