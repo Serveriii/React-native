@@ -43,7 +43,7 @@ export default function HomeScreen({ navigation }) {
     let date = new Date().toLocaleString();
     (async () => {
       try {
-        await AsyncStorage.setItem("@scoreboard:key, date", date);
+        await AsyncStorage.setItem("date", date);
       } catch (error) {
         console.log(error);
       }
@@ -55,7 +55,7 @@ export default function HomeScreen({ navigation }) {
   // Name is saved to storage
   const buttonHandler = async () => {
     try {
-      await AsyncStorage.setItem("@scoreboard:key, name", name);
+      await AsyncStorage.setItem("name", name);
       setIsName(true);
     } catch (error) {
       console.log("Error saving name");

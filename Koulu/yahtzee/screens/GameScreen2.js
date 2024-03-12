@@ -105,18 +105,8 @@ export default function GameScreen2({ navigation }) {
     setTotalSum(0);
     board = [];
   };
-  const setScores = async () => {
-    let timestamp = new Date().getTime().toString();
-    let date = new Date().toLocaleString();
-    try {
-      await AsyncStorage.setItem(
-        "@scoreboard:key, score " + timestamp,
-        totalSum.toString()
-      );
-      await AsyncStorage.setItem("@scoreboard:key, date " + timestamp, date);
-    } catch (error) {
-      console.log("Error saving score");
-    }
+  const setScores = () => {
+    console.log(totalSum);
     navigation.navigate("Score");
   };
 

@@ -18,18 +18,18 @@ export default function ScoreScreen({ navigation }) {
 
   const getScoreboard = async () => {
     try {
-      const name = await AsyncStorage.getItem("@scoreboard:key, name");
-      const keys = await AsyncStorage.getAllKeys();
-      const result = await AsyncStorage.multiGet(keys);
-      let scoreArray = [];
-      result.forEach((item) => {
-        if (item[0].includes("score")) {
-          let score = JSON.parse(item[1]);
-          scoreArray.push(score);
-        }
-      });
-      setScores(scoreArray);
-      
+      let name = await AsyncStorage.getItem("name");
+      let date = await AsyncStorage.getItem("date");
+      let score = totalSum;
+      if (name === null) {
+        name = "Anonymous";
+      } else if (score === 0) {
+        return;
+      }
+      let newScore = { name: name, date: date, score: score };
+      let newScores = [...scores, newScore];
+      setScores((prevScores) => [...prevScores, newScore]);
+      console.log(newScores);
     } catch (error) {
       console.log("Error getting scoreboard", error);
     }
