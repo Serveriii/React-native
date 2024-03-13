@@ -7,7 +7,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { dices } from "../data/Dices";
 
 
-export default function PointsRow(props, { navigation }) {
+export default function PointsRow(props) {
   const [counts, setCounts] = useState({});
   const { totalSum, setTotalSum } = useContext(context);
   const { pointState, setPointState } = useContext(context);
@@ -31,6 +31,14 @@ export default function PointsRow(props, { navigation }) {
     }
     setCounts(countsObject);
   }, [props]);
+
+  // useEffect(() => {
+  //   if (pointState.every((val) => val === true)) {
+  //     setScores();
+  //   }
+  // },[1000])
+
+
 
   let counters = Object.entries(counts).map(([number, count]) => (
     <Text key={number}>{`     ${count}   `}</Text>

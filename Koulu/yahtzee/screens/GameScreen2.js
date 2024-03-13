@@ -105,9 +105,19 @@ export default function GameScreen2({ navigation }) {
     setTotalSum(0);
     board = [];
   };
-  const setScores = () => {
-    console.log(totalSum);
-    navigation.navigate("Score");
+  const setScores = async () => {
+    const name = await AsyncStorage.getItem("name");
+    const userScores = {
+      name: name,
+      date: new Date().toLocaleDateString(),
+      score: totalSum,
+    };
+    console.log(userScores);
+    try {
+      await AsyncStorage.setItem("scores", JSON.stringify(userScores));
+    } catch (error) {
+      console.log("Error saving score", error);
+    }
   };
 
   if (pointState.every((val) => val === true)) {
@@ -115,12 +125,13 @@ export default function GameScreen2({ navigation }) {
       <View style={generalStyles.scaffold}>
         <Header text={"Mini-yahtzee"} />
         <Text style={styles.gameover}>Game over!</Text>
-        <Text style={{...styles.gameover, color: 'black'}}>Total points: {totalSum}</Text>
+        <Text style={{ ...styles.gameover, color: "black" }}>
+          Total points: {totalSum}
+        </Text>
         <Button
           children="Scoreboard"
           mode="contained"
           buttonColor="#4f1699"
-
           onPress={setScores}
         />
         <Button
