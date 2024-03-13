@@ -6,9 +6,9 @@ import { generalStyles } from "../styles/generalStyles";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { dices } from "../data/Dices";
 
-
 export default function PointsRow(props) {
   const [counts, setCounts] = useState({});
+  const [bonus, setBonus] = useState(dices.BONUS_POINTS_LIMIT);
   const { totalSum, setTotalSum } = useContext(context);
   const { pointState, setPointState } = useContext(context);
   const { throwsLeft, setThrowsLeft } = useContext(context);
@@ -32,13 +32,11 @@ export default function PointsRow(props) {
     setCounts(countsObject);
   }, [props]);
 
-  // useEffect(() => {
-  //   if (pointState.every((val) => val === true)) {
-  //     setScores();
-  //   }
-  // },[1000])
-
-
+  useEffect(() => {
+    if (pointState.every((val) => val === false)) {
+      setBonus(dices.BONUS_POINTS_LIMIT);
+    }
+  }, [pointState]);
 
   let counters = Object.entries(counts).map(([number, count]) => (
     <Text key={number}>{`     ${count}   `}</Text>
@@ -57,15 +55,18 @@ export default function PointsRow(props) {
       newPointState[i] = true;
       let sum = Object.values(counts)[i];
       let newTotalSum = totalSum + sum;
+      setBonus(bonus - sum);
+      if (bonus - sum <= 0) {
+        newTotalSum = newTotalSum + dices.BONUS_POINTS;
+        setBonus(dices.BONUS_POINTS_LIMIT);
+      }
       setTotalSum(newTotalSum);
       setPointState(newPointState);
+
       props.throwDice();
       setThrowsLeft(dices.NBR_OF_THROWS - 1);
     }
   };
-
-
-  
 
   const pointColor = (i, color) => {
     if (pointState[i] === true) {
@@ -76,7 +77,7 @@ export default function PointsRow(props) {
     } else {
       return "green";
     }
-  }
+  };
 
   const points = [];
   for (let i = 0; i < dices.MAX_SPOT; i++) {
@@ -106,6 +107,9 @@ export default function PointsRow(props) {
     return (
       <View style={styles.container}>
         <Text style={generalStyles.text}>Total points: {totalSum}</Text>
+        <Text style={generalStyles.text}>
+          You are {bonus} points away from a bonus!
+        </Text>
         <View style={styles.row}>{counters}</View>
         <View style={styles.row}>{points}</View>
       </View>

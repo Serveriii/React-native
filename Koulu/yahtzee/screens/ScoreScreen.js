@@ -9,6 +9,8 @@ import { scoreStyles } from "../styles/scoreStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { context } from "../components/Context";
 
+let scoresArray = [];
+
 export default function ScoreScreen({ navigation }) {
   const { totalSum, setTotalSum } = useContext(context);
   const [scores, setScores] = useState([]);
@@ -20,15 +22,13 @@ export default function ScoreScreen({ navigation }) {
     return showScores;
   }, [navigation]);
 
-  let scoresArray = [];
-
   const getScoreboard = async () => {
     try {
       const userScores = await AsyncStorage.getItem("scores");
       if (userScores !== null) {
         const parsedScores = JSON.parse(userScores);
         scoresArray.push(parsedScores);
-        setScores((prevScores) => [...prevScores, parsedScores]);
+        setScores((prevScores) => [...prevScores, scoresArray]);
       }
     } catch (error) {
       console.log("Error getting scoreboard", error);
