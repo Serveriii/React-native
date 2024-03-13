@@ -21,8 +21,6 @@ export const scoreStyles = StyleSheet.create({
     alignItems: "center",
   },
   scores: {
-    borderColor: "#4f1699",
-    borderWidth: 1,
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",

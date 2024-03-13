@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState, useRef } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { Button } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Header from "../components/Header";
@@ -12,7 +12,6 @@ import { context } from "../components/Context";
 export default function ScoreScreen({ navigation }) {
   const { totalSum, setTotalSum } = useContext(context);
   const [scores, setScores] = useState([]);
-  const prevTotalSum = useRef(totalSum);
 
   useEffect(() => {
     const showScores = navigation.addListener("focus", () => {
@@ -29,7 +28,7 @@ export default function ScoreScreen({ navigation }) {
       if (userScores !== null) {
         const parsedScores = JSON.parse(userScores);
         scoresArray.push(parsedScores);
-        setScores(scoresArray);
+        setScores((prevScores) => [...prevScores, parsedScores]);
       }
     } catch (error) {
       console.log("Error getting scoreboard", error);
@@ -37,8 +36,7 @@ export default function ScoreScreen({ navigation }) {
   };
 
   const clearScores = () => {
-    scoresArray = [];
-    setScores(scoresArray);
+    setScores([]);
   };
 
   return (
@@ -47,15 +45,18 @@ export default function ScoreScreen({ navigation }) {
       <View style={scoreStyles.scoreboard}>
         <Icon name="th-list" size={40} color={"#4f1699"} />
         <Text style={scoreStyles.header}>Top scores</Text>
-        {scores.map((score, index) => (
-          <View key={index} style={scoreStyles.scores}>
-            <Text style={scoreStyles.text}>Player: {score.name}</Text>
-            <Text style={scoreStyles.text}>{score.date} </Text>
-            <Text style={{ ...scoreStyles.text, color: "#4f1699" }}>
-              {score.score}
-            </Text>
-          </View>
-        ))}
+        <ScrollView>
+          {scores.map((score, index) => (
+            <View key={index} style={scoreStyles.scores}>
+              <Text style={scoreStyles.text}>{index + 1 + "."}</Text>
+              <Text style={scoreStyles.text}>Player: {score.name}</Text>
+              <Text style={scoreStyles.text}>{score.date} </Text>
+              <Text style={{ ...scoreStyles.text, color: "#4f1699" }}>
+                {score.score}
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
       <Button
         children="Clear scores"

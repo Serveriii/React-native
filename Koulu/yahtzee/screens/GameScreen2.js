@@ -118,6 +118,7 @@ export default function GameScreen2({ navigation }) {
     } catch (error) {
       console.log("Error saving score", error);
     }
+    navigation.navigate("Score");
   };
 
   if (pointState.every((val) => val === true)) {
