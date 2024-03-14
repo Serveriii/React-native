@@ -51,16 +51,20 @@ export default function ScoreScreen({ navigation }) {
         <Icon name="th-list" size={40} color={"#4f1699"} />
         <Text style={scoreStyles.header}>Top scores</Text>
         <ScrollView>
-          {scores.map((score, index) => (
-            <View key={index} style={scoreStyles.scores}>
-              <Text style={scoreStyles.text}>{index + 1 + "."}</Text>
-              <Text style={scoreStyles.text}>Player: {score.name}</Text>
-              <Text style={scoreStyles.text}>{score.date} </Text>
-              <Text style={{ ...scoreStyles.text, color: "#4f1699" }}>
-                {score.score}
-              </Text>
-            </View>
-          ))}
+          {scores
+            // Sort the scores array in descending order based on score
+            .sort((a, b) => b.score - a.score)
+            // Map over the sorted array to render the scores
+            .map((score, index) => (
+              <View key={index} style={scoreStyles.scores}>
+                <Text style={scoreStyles.text}>{index + 1 + "."}</Text>
+                <Text style={scoreStyles.text}>Player: {score.name}</Text>
+                <Text style={scoreStyles.text}>{score.date} </Text>
+                <Text style={{ ...scoreStyles.text, color: "#4f1699" }}>
+                  {score.score}
+                </Text>
+              </View>
+            ))}
         </ScrollView>
       </View>
       <Button
