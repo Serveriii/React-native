@@ -112,7 +112,6 @@ export default function GameScreen2({ navigation }) {
       date: new Date().toLocaleDateString(),
       score: totalSum,
     };
-    console.log(userScores);
     try {
       await AsyncStorage.setItem("scores", JSON.stringify(userScores));
     } catch (error) {
