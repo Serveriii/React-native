@@ -18,15 +18,16 @@ export default function ScoreScreen({ navigation }) {
       getScoreboard();
     });
     return showScores;
-  }, [navigation]);
+  }, [navigation, scores]);
 
   const getScoreboard = async () => {
+    const scoreValues = scores.map((score) => score.score);
+    console.log(scoreValues);
     try {
       const userScores = await AsyncStorage.getItem("scores");
       const parsedScores = JSON.parse(userScores);
       console.log(parsedScores.score);
-      const scoreValues = scores.map((score) => score.score);
-      console.log(scoreValues);
+
       if (parsedScores.name === null) {
         return;
       } else if (scoreValues.includes(parsedScores.score)) {
